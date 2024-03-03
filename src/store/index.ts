@@ -5,8 +5,14 @@ import rootReducer from './rootReducer';
 //   reducer: rootReducer,
 // });
 
-export const makeStore = () => {
-  return configureStore({
-    reducer: { rootReducer },
-  });
-};
+// export const makeStore = () => {
+//   return configureStore({
+//     reducer: { rootReducer },
+//   });
+// };
+
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
+});

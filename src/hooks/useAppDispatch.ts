@@ -4,4 +4,5 @@ import { useDispatch } from 'react-redux';
 
 // export const useAppDispatch: DispatchFunc = useDispatch;
 
-export const useAppDispatch: () => AppDispatch = useDispatch;
+//export const useAppDispatch: () => AppDispatch = useDispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
