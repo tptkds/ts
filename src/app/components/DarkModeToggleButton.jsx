@@ -20,28 +20,9 @@ export default function DarkModeToggleButton() {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
 
-  const mouseEnterLeaveHandler = (props) => {
-    console.log(props);
-    setIsMouseOverd(!isMouseOverd);
-  };
-
   return (
-    <button
-      onClickCapture={clickHandler}
-      onMouseEnter={mouseEnterLeaveHandler}
-      onMouseLeave={mouseEnterLeaveHandler}
-    >
-      {theme === 'light' ? (
-        !isMouseOverd ? (
-          <IoSunnyOutline onClick={clickHandler} />
-        ) : (
-          <IoSunnySharp onClick={clickHandler} />
-        )
-      ) : !isMouseOverd ? (
-        <FaRegMoon onClick={clickHandler} />
-      ) : (
-        <FaMoon onClick={clickHandler} />
-      )}
+    <button onClickCapture={clickHandler}>
+      {theme === 'light' ? <IoSunnyOutline /> : <FaMoon />}
     </button>
   );
 }
