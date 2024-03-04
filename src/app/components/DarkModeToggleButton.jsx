@@ -4,7 +4,7 @@ import { FaRegMoon, FaMoon } from 'react-icons/fa';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 export default function DarkModeToggleButton() {
-  const [mounted, setMounted] = useState < boolean > false;
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
