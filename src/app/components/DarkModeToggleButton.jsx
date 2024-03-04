@@ -27,20 +27,20 @@ export default function DarkModeToggleButton() {
 
   return (
     <button
-      onClick={clickHandler}
+      onClickCapture={clickHandler}
       onMouseEnter={mouseEnterLeaveHandler}
       onMouseLeave={mouseEnterLeaveHandler}
     >
       {theme === 'light' ? (
         !isMouseOverd ? (
-          <IoSunnyOutline />
+          <IoSunnyOutline onClick={clickHandler} />
         ) : (
-          <IoSunnySharp />
+          <IoSunnySharp onClick={clickHandler} />
         )
       ) : !isMouseOverd ? (
-        <FaRegMoon />
+        <FaRegMoon onClick={clickHandler} />
       ) : (
-        <FaMoon />
+        <FaMoon onClick={clickHandler} />
       )}
     </button>
   );
