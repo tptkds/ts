@@ -4,10 +4,9 @@ import { FaRegMoon, FaMoon } from 'react-icons/fa';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 export default function DarkModeToggleButton() {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState < boolean > false;
   const { theme, setTheme } = useTheme();
-  const [isMouseOverd, setIsMouseOverd] = useState(false);
-  // useEffect only runs on the client, so now we can safely show the UI
+
   useEffect(() => {
     setMounted(true);
   }, []);
