@@ -17,10 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body className={inter.className}>
         <StoreProvider>
-          <ThemeProvider>
+          <ThemeProvider attribute="class">
             <main className="bg-white dark: bg-black">
               <Nav />
               {children}

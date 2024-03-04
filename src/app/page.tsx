@@ -1,5 +1,5 @@
 'use client';
-import DarkModeButton from './components/DarkModeButton';
+import DarkModeButton from './components/DarkModeToggleButton';
 
 export default function Home() {
   return (
