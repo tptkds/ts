@@ -2,7 +2,7 @@
 // export type DispatchFunc = () => AppDispatch;
 // export type RootState = ReturnType<typeof store.getState>;
 
-import { store } from '../store/index';
+import { store } from '../stores/index';
 
 // import { makeStore } from '../store/index';
 // export type AppStore = ReturnType<typeof makeStore>;
