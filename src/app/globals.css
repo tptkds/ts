@@ -14,3 +14,17 @@
   width: calc(100% - var(--layout-row-gap));
   left: calc(var(--layout-row-gap) / 2);
 }
+
+.slideText {
+  animation: slideText 20s linear infinite;
+}
+
+@keyframes slideText {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}

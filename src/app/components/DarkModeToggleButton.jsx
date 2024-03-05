@@ -20,7 +20,7 @@ export default function DarkModeToggleButton() {
   };
 
   return (
-    <button onClickCapture={clickHandler}>
+    <button onClickCapture={clickHandler} className="hidden">
       {theme === 'light' ? <IoSunnyOutline /> : <FaMoon />}
     </button>
   );

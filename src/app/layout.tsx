@@ -5,6 +5,7 @@ import ThemeProvider from './ThemeProvider';
 import Nav from './components/Nav';
 import DarkModeToggleButton from './components/DarkModeToggleButton';
 import './globals.css';
+import Notice from './components/Notice';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,12 +21,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className={inter.className + ' bg-gray-300'}>
+      <body
+        className={
+          inter.className + ' bg-gray-300 overflow-x-hidden select-none'
+        }
+      >
         <StoreProvider>
           <ThemeProvider attribute="class">
             <div>
               <header>
                 <DarkModeToggleButton />
+                <Notice />
                 <Nav />
               </header>
 
