@@ -1,8 +1,5 @@
-import React from 'react';
-interface SingUpProps {}
+import { permanentRedirect } from 'next/navigation';
 
-const Product: React.FC<SingUpProps> = () => {
-  return <div>Product</div>;
-};
-
-export default Product;
+export default function Product() {
+  permanentRedirect(`/product/all`);
+}
