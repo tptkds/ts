@@ -3,38 +3,43 @@ import Link from 'next/link';
 
 export default function Nav() {
   return (
-    <nav>
-      <ul>
-        <li>
-          Shop
-          <ul>
-            <li>
-              <Link href="/">Tops</Link>
-            </li>
-            <li>
-              <Link href="/">Bottoms</Link>
-            </li>
-            <li>
-              <Link href="/">Dresses</Link>
-            </li>
-            <li>
-              <Link href="/">Bags</Link>
-            </li>
-            <li>
-              <Link href="/">Acc</Link>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <Link href="/">Login</Link>
-        </li>
-        <li>
-          <Link href="/">Cart</Link>
-        </li>
-        <li>
-          <button>Search</button>
-        </li>
-      </ul>
-    </nav>
+    <div className="flex my-4 header-bottom sticky h-16	shadow-md rounded-xl bg-opacity-50 bg-white">
+      <nav className="w-full h-full">
+        <ul className="flex flex-row justify-around items-center h-full">
+          <li className="">showfinnmore</li>
+          <li>DARKMODE</li>
+          <li>HOME</li>
+          <li>
+            SHOP
+            <ul className="hidden absolute items-center">
+              <li>
+                <Link href="/">All</Link>
+              </li>
+              <li>
+                <Link href="/">Electronics</Link>
+              </li>
+              <li>
+                <Link href="/">Jewelery</Link>
+              </li>
+              <li>
+                <Link href="/">Men&apos;s clothing</Link>
+              </li>
+              <li>
+                <Link href="/">Women&apos;s clothing</Link>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <button>SEARCH</button>
+          </li>
+          <li>
+            <Link href="/">LOGIN</Link>
+          </li>
+          <li>
+            <Link href="/">CART</Link>
+          </li>
+        </ul>
+      </nav>
+    </div>
   );
 }

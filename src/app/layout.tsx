@@ -4,6 +4,7 @@ import StoreProvider from './StoreProvider';
 import ThemeProvider from './ThemeProvider';
 import Nav from './components/Nav';
 import DarkModeToggleButton from './components/DarkModeToggleButton';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,14 +20,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={inter.className + ' bg-gray-300'}>
         <StoreProvider>
           <ThemeProvider attribute="class">
-            <main className="bg-white dark: bg-black">
-              <DarkModeToggleButton />
-              <Nav />
+            <div>
+              <header>
+                <DarkModeToggleButton />
+                <Nav />
+              </header>
+
               {children}
-            </main>
+            </div>
           </ThemeProvider>
         </StoreProvider>
       </body>

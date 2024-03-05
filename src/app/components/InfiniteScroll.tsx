@@ -7,7 +7,7 @@ interface InfiniteScrollComponentProps {
   data: any[];
 }
 export default function InfiniteScrollComponent() {
-  const data = useMemo(() => ['dsa'], []);
+  const data = useMemo(() => [''], []);
   const fetchData = () => null;
   const [items, setItems] = useState<any[]>(data);
   useEffect(() => {
