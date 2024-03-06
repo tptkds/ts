@@ -5,14 +5,14 @@ import ProductPage from '../components/ProductPage';
 import { CATEGIRIES, ITEMSPERPAGE } from '@/constants/product';
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  if (CATEGIRIES.indexOf(params.slug[0]) === -1) {
-    permanentRedirect('/product/all/1');
-  }
-  if (params.slug.length === 1) {
-    permanentRedirect(`/product/${params.slug[0]}/1`);
-  }
+  // if (CATEGIRIES.indexOf(params.slug[0]) === -1) {
+  //   permanentRedirect('/product/all/1');
+  // }
+  // if (params.slug.length === 1) {
+  //   permanentRedirect(`/product/${params.slug[0]}/1`);
+  // }
 
-  const url: string = getUrl(params.slug[0]);
+  const url: string = getUrl(params.slug[0], { next: { revalidate: 3600 } });
   const products: Product[] = await getProducts(url);
   const totalItems: number = products.length;
 
@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   console.log(ITEMSPERPAGE, page);
 
   const limitedProducts: Product[] = await getProducts(
-    url + `?limit=${ITEMSPERPAGE}&page=2`
+    url + `?limit=${ITEMSPERPAGE}`
   );
 
   return (
