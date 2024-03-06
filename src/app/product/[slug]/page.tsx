@@ -1,15 +1,19 @@
 import { permanentRedirect } from 'next/navigation';
-import ProductList from '../components/ProductList';
-import { getUrl } from '@/utilities/product';
+import { getProducts, getUrl } from '@/utilities/product';
+import { Product } from '@/types/globalTypes';
+import ProductPage from '../components/ProductPage';
 
-export default function Page({ params }: { params: { slug: string } }) {
+export default async function Page({ params }: { params: { slug: string } }) {
   let url: string = getUrl(params.slug);
-  if (params.slug !== 'all' && url === 'https://fakestoreapi.com/products')
+  if (params.slug !== 'all' && url === 'https://fakestoreapi.com/products') {
     permanentRedirect('/product/all');
-
+  }
+  const products: Product[] = await getProducts(url);
+  const totalItems: number = products.length;
+  const limitedProducts = products.slice(0, 9);
   return (
     <div className="h-full">
-      <ProductList url={url} />
+      <ProductPage products={limitedProducts} totalItems={totalItems} />
     </div>
   );
 }

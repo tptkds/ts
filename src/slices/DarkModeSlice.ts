@@ -4,8 +4,8 @@ interface darkModeState {
   isDarkMode: boolean;
 }
 
-export const darkmodeSlice = createSlice({
-  name: 'darkmodeSlice',
+const darkModeSlice = createSlice({
+  name: 'darkModeSlice',
   initialState: {
     isDarkMode: false,
   } as darkModeState,
@@ -16,5 +16,5 @@ export const darkmodeSlice = createSlice({
   },
 });
 
-export const { toggleDarkMode } = darkmodeSlice.actions;
-export default darkmodeSlice.reducer;
+export const { toggleDarkMode } = darkModeSlice.actions;
+export const darkModeReducer = darkModeSlice.reducer;

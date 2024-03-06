@@ -1,20 +1,26 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { Product } from '@/types/globalTypes';
+import { createSlice } from '@reduxjs/toolkit';
 
-// interface productState {
-//   url: null | string;
-// }
+interface productState {
+  products: Product[];
+  currentPage: number;
+}
 
-// export const productSlice = createSlice({
-//   name: 'productSlice',
-//   initialState: {
-//     url: null,
-//   } as productState,
-//   reducers: {
-//     changeURL: (state) => {
-//       state.isDarkMode = !state.isDarkMode;
-//     },
-//   },
-// });
+export const productSlice = createSlice({
+  name: 'productSlice',
+  initialState: {
+    products: [],
+    currentPage: 1,
+  } as productState,
+  reducers: {
+    setProducts: (state, action) => {
+      state.products = action.payload;
+    },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+  },
+});
 
-// export const { toggleDarkMode } = darkmodeSlice.actions;
-// export default darkmodeSlice.reducer;
+export const { setProducts, setCurrentPage } = productSlice.actions;
+export const productReducer = productSlice.reducer;

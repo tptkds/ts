@@ -1,5 +1,5 @@
-'use client';
-import Link from 'next/link';
+import Links from './Links';
+import Search from './Search';
 
 export default function Nav() {
   return (
@@ -9,35 +9,8 @@ export default function Nav() {
           <li className="">showfinnmore</li>
           <li>DARKMODE</li>
           <li>HOME</li>
-          <li>
-            SHOP
-            <ul className="hidden absolute items-center">
-              <li>
-                <Link href="/">All</Link>
-              </li>
-              <li>
-                <Link href="/">Electronics</Link>
-              </li>
-              <li>
-                <Link href="/">Jewelery</Link>
-              </li>
-              <li>
-                <Link href="/">Men&apos;s clothing</Link>
-              </li>
-              <li>
-                <Link href="/">Women&apos;s clothing</Link>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <button>SEARCH</button>
-          </li>
-          <li>
-            <Link href="/">LOGIN</Link>
-          </li>
-          <li>
-            <Link href="/">CART</Link>
-          </li>
+          <Links />
+          <Search />
         </ul>
       </nav>
     </div>
