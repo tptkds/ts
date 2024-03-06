@@ -3,7 +3,7 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  return <div>{children}</div>;
+  return <div className="h-full">{children}</div>;
 };
 
 export default Layout;

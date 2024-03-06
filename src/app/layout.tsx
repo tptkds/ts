@@ -28,7 +28,7 @@ export default function RootLayout({
       >
         <StoreProvider>
           <ThemeProvider attribute="class">
-            <div>
+            <div className="">
               <header>
                 <DarkModeToggleButton />
                 <Notice />
