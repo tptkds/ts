@@ -1,8 +1,7 @@
-import { permanentRedirect } from 'next/navigation';
+// import { permanentRedirect } from 'next/navigation';
 import { getProducts, getUrl } from '@/utilities/product';
 import { Product } from '@/types/globalTypes';
 import ProductPage from '../components/ProductPage';
-import { CATEGIRIES, ITEMSPERPAGE } from '@/constants/product';
 
 export default async function Page({ params }: { params: { slug: string } }) {
   // if (CATEGIRIES.indexOf(params.slug[0]) === -1) {
@@ -12,21 +11,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
   //   permanentRedirect(`/product/${params.slug[0]}/1`);
   // }
 
-  const url: string = getUrl(params.slug[0], { next: { revalidate: 3600 } });
+  const url: string = getUrl(params.slug[0]);
   const products: Product[] = await getProducts(url);
-  const totalItems: number = products.length;
-
-  const page: string = params.slug[1];
-
-  console.log(ITEMSPERPAGE, page);
-
-  const limitedProducts: Product[] = await getProducts(
-    url + `?limit=${ITEMSPERPAGE}`
-  );
 
   return (
     <div className="h-full">
-      <ProductPage products={limitedProducts} totalItems={totalItems} />
+      <ProductPage products={products} url={url} />
     </div>
   );
 }

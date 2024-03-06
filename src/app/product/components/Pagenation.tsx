@@ -4,23 +4,27 @@ import { ITEMSPERPAGE } from '@/constants/product';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { setCurrentPage } from '@/slices/productSlict';
+import { Product } from '@/types/globalTypes';
 
-interface PagenationProps {
-  totalItems: number;
-}
+export default function Pagenation() {
+  const currentPage: number = useAppSelector(
+    (state) => state.product.currentPage
+  );
+  const products: Product[] = useAppSelector((state) => state.product.products);
+  const totalItems: number = products.length;
+  const totalPages: number = Math.ceil(totalItems / ITEMSPERPAGE);
 
-export default function Pagenation({ totalItems }: PagenationProps) {
-  const itemsPerPage = ITEMSPERPAGE;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const currentPage = useAppSelector((state) => state.product.currentPage);
-
+  const dispatch = useAppDispatch();
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLButtonElement;
-    const name = target.name as string;
+    const name: string = target.name;
 
     if (name === 'newer') {
+      dispatch(setCurrentPage(currentPage - 1));
     } else if (name === 'older') {
+      dispatch(setCurrentPage(currentPage + 1));
     } else {
+      dispatch(setCurrentPage(Number(name)));
     }
   };
 
@@ -28,7 +32,11 @@ export default function Pagenation({ totalItems }: PagenationProps) {
     <div>
       <ul className="flex justify-center items-center	">
         <li className="p-2.5">
-          <button name="newer" onClick={handleClick}>
+          <button
+            name="newer"
+            onClick={handleClick}
+            disabled={currentPage === 1}
+          >
             NEWER
           </button>
         </li>
@@ -46,7 +54,11 @@ export default function Pagenation({ totalItems }: PagenationProps) {
           )
         )}
         <li className="p-2.5">
-          <button name="older" onClick={handleClick}>
+          <button
+            name="older"
+            onClick={handleClick}
+            disabled={currentPage === totalPages}
+          >
             OLDER
           </button>
         </li>

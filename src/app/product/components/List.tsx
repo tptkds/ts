@@ -2,13 +2,22 @@ import React from 'react';
 import Image from 'next/image';
 import { Product } from '@/types/globalTypes';
 import { useAppSelector } from '@/hooks/useAppSelector';
+import { ITEMSPERPAGE } from '@/constants/product';
 
 export default function List() {
   const products: Product[] = useAppSelector((state) => state.product.products);
+  const currentPage: number = useAppSelector(
+    (state) => state.product.currentPage
+  );
+
+  const startIndex = ITEMSPERPAGE * (currentPage - 1);
+  const endIndex = startIndex + 9;
+  const curProducts = products.slice(startIndex, endIndex);
+
   return (
     <div className="h-full">
       <ul className="flex flex-wrap h-full">
-        {products.map((v, i) => {
+        {curProducts.map((v, i) => {
           return (
             <li
               key={v.id}
