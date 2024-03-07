@@ -1,8 +1,12 @@
 import React from 'react';
-interface SingUpProps {}
+import CartForm from './components/CartForm';
 
-const Cart: React.FC<SingUpProps> = () => {
-  return <div>Cart</div>;
-};
+function Cart() {
+  return (
+    <div>
+      <CartForm />
+    </div>
+  );
+}
 
 export default Cart;

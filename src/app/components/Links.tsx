@@ -6,10 +6,10 @@ function Links() {
   return (
     <>
       <li>
-        SHOP
+        <Link href="/product/all">SHOP</Link>
         <ul className="hidden absolute items-center">
           <li>
-            <Link href="/">All</Link>
+            <Link href="/product/all">All</Link>
           </li>
           <li>
             <Link href="/">Electronics</Link>
@@ -32,7 +32,7 @@ function Links() {
         <Link href="/">LOGIN</Link>
       </li>
       <li>
-        <Link href="/">CART</Link>
+        <Link href="/cart">CART</Link>
       </li>
     </>
   );

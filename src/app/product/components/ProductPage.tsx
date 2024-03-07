@@ -16,6 +16,11 @@ import { getCartItemsLS } from '@/utilities/localstorage';
 function ProductPage({ products, url }: { products: Product[]; url: string }) {
   const dispatch = useAppDispatch();
   const prevUrl = useAppSelector((state) => state.product.url);
+
+  useEffect(() => {
+    dispatch(setCartItems(getCartItemsLS()));
+  }, []);
+
   useEffect(() => {
     if (prevUrl !== url) {
       dispatch(setProducts(products));
@@ -23,10 +28,6 @@ function ProductPage({ products, url }: { products: Product[]; url: string }) {
       dispatch(setCurrentPage(1));
     }
   }, [url]);
-
-  useEffect(() => {
-    dispatch(setCartItems(getCartItemsLS()));
-  }, []);
 
   return (
     <>

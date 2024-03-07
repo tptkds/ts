@@ -34,8 +34,7 @@ export default function RootLayout({
                 <Notice />
                 <Nav />
               </header>
-
-              {children}
+              <main className="p-12">{children}</main>
             </div>
           </ThemeProvider>
         </StoreProvider>

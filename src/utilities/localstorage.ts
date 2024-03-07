@@ -20,6 +20,7 @@ export const setCartItemsLS = (item: Product) => {
 };
 
 export const getCartItemsLS = () => {
+  if (typeof window === 'undefined') return null;
   const jsonString = localStorage.getItem('cartItems');
   if (jsonString) {
     const parsedData: CartItems = JSON.parse(jsonString);
