@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className={inter.className + 'overflow-x-hidden select-none'}>
+      <body className={inter.className + ' overflow-x-hidden select-none'}>
         <StoreProvider>
           <ThemeProvider attribute="class">
             <div className="">

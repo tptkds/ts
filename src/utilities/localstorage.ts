@@ -28,3 +28,11 @@ export const getCartItemsLS = (): CartItems => {
   }
   return {};
 };
+
+export const deleteCartItemsLS = (keys: string[]) => {
+  let newCartItems: CartItems = getCartItemsLS();
+  keys.forEach((key) => {
+    delete newCartItems[key];
+  });
+  localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+};
