@@ -12,10 +12,11 @@ import Pagenation from './Pagenation';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { getCartItemsLS } from '@/utilities/localstorage';
+import { AppDispatch } from '@/types/reduxTypes';
 
 function ProductPage({ products, url }: { products: Product[]; url: string }) {
-  const dispatch = useAppDispatch();
-  const prevUrl = useAppSelector((state) => state.product.url);
+  const dispatch: AppDispatch = useAppDispatch();
+  const prevUrl: string = useAppSelector((state) => state.product.url);
 
   useEffect(() => {
     dispatch(setCartItems(getCartItemsLS()));

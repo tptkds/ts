@@ -1,11 +1,11 @@
 import { CartItems, Product } from '@/types/globalTypes';
 
 export const setCartItemsLS = (item: Product) => {
-  const cartItems: CartItems | undefined = getCartItemsLS();
+  const cartItems: CartItems | never[] = getCartItemsLS();
   const key: string = item.id;
   const value: Product = item;
 
-  if (cartItems === undefined) {
+  if (!cartItems || Object.keys(cartItems).length === 0) {
     const newCartItems = { [key]: value };
     localStorage.setItem('cartItems', JSON.stringify(newCartItems));
   } else {
@@ -19,12 +19,12 @@ export const setCartItemsLS = (item: Product) => {
   }
 };
 
-export const getCartItemsLS = () => {
-  if (typeof window === 'undefined') return null;
+export const getCartItemsLS = (): CartItems => {
+  if (typeof window === 'undefined') return {};
   const jsonString = localStorage.getItem('cartItems');
   if (jsonString) {
     const parsedData: CartItems = JSON.parse(jsonString);
     return parsedData;
   }
-  return undefined;
+  return {};
 };
