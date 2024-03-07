@@ -32,7 +32,7 @@ function CartForm() {
             ? keys.map((v) => {
                 return (
                   <li key={v} className="my-8 flex">
-                    <div className="relative lg:w-1/6 md:w-2/6 sm:w-2/6  h-24 m-6">
+                    <div className="relative lg:w-1/12 md:w-2/6 sm:w-2/12  h-24 w-3/12">
                       <Image
                         src={cartItems[v].image}
                         alt={cartItems[v].title}
@@ -44,16 +44,16 @@ function CartForm() {
                       />
                     </div>
                     <div className="flex w-full">
-                      <div className="grow">
+                      <div className=" w-2/5">
                         <p>{cartItems[v].title}</p>
                       </div>
-                      <div className="grow">
+                      <div className="grow w-1/5">
                         <p>{cartItems[v].price}</p>
                       </div>
-                      <div className="grow">
+                      <div className="grow w-1/5">
                         <p>{'개수'}</p>
                       </div>
-                      <div className="grow">
+                      <div className="grow w-1/5">
                         <p>{'총합'}</p>
                       </div>
                     </div>
