@@ -1,8 +1,12 @@
 export interface Product {
-  id: number;
+  id: string;
   title: string;
   price: number;
   category: string;
   description: string;
   image: string;
+}
+
+export interface CartItems {
+  [productId: string]: Product;
 }

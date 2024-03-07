@@ -1,9 +1,5 @@
 import InfiniteScrollComponent from './components/InfiniteScroll';
 
-export default function All() {
-  return (
-    <div>
-      <InfiniteScrollComponent />
-    </div>
-  );
+export default function Home() {
+  return <div>dfsad</div>;
 }

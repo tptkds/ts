@@ -1,21 +1,33 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import List from './List';
 import { Product } from '@/types/globalTypes';
-import { setCurrentPage, setProducts, setUrl } from '@/slices/productSlict';
+import {
+  setCartItems,
+  setCurrentPage,
+  setProducts,
+  setUrl,
+} from '@/slices/productSlict';
 import Pagenation from './Pagenation';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
+import { getCartItemsLS } from '@/utilities/localstorage';
 
 function ProductPage({ products, url }: { products: Product[]; url: string }) {
   const dispatch = useAppDispatch();
-  dispatch(setProducts(products));
   const prevUrl = useAppSelector((state) => state.product.url);
-  if (prevUrl !== url) {
-    dispatch(setProducts(products));
-    dispatch(setUrl(url));
-    dispatch(setCurrentPage(1));
-  }
+  useEffect(() => {
+    if (prevUrl !== url) {
+      dispatch(setProducts(products));
+      dispatch(setUrl(url));
+      dispatch(setCurrentPage(1));
+    }
+  }, [url]);
+
+  useEffect(() => {
+    dispatch(setCartItems(getCartItemsLS()));
+  }, []);
+
   return (
     <>
       <List />

@@ -1,10 +1,11 @@
-import { Product } from '@/types/globalTypes';
+import { CartItems, Product } from '@/types/globalTypes';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface productState {
   products: Product[];
   currentPage: number;
   url: string;
+  cartItems: CartItems;
 }
 
 export const productSlice = createSlice({
@@ -13,6 +14,7 @@ export const productSlice = createSlice({
     products: [],
     currentPage: 0,
     url: '',
+    cartItems: {},
   } as productState,
   reducers: {
     setProducts: (state, action) => {
@@ -24,8 +26,12 @@ export const productSlice = createSlice({
     setUrl: (state, action) => {
       state.url = action.payload;
     },
+    setCartItems: (state, action) => {
+      state.cartItems = action.payload;
+    },
   },
 });
 
-export const { setProducts, setCurrentPage, setUrl } = productSlice.actions;
+export const { setProducts, setCurrentPage, setUrl, setCartItems } =
+  productSlice.actions;
 export const productReducer = productSlice.reducer;

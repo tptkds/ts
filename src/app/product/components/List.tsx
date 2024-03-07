@@ -1,10 +1,13 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import { Product } from '@/types/globalTypes';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { ITEMSPERPAGE } from '@/constants/product';
+import CartButton from './CartButton';
 
 export default function List() {
+  const cartItems = useAppSelector((state) => state.product.cartItems);
   const products: Product[] = useAppSelector((state) => state.product.products);
   const currentPage: number = useAppSelector(
     (state) => state.product.currentPage
@@ -23,7 +26,7 @@ export default function List() {
               key={v.id}
               className="flex-col bg-white flex flex-wrap lg:w-1/3 md:w-1/2 sm:w-full h-lvh"
             >
-              <div className=" w-full h-5/6 justify-center flex">
+              <div className=" relative w-full h-5/6 justify-center flex">
                 <div className=" relative w-3/6 h-full ">
                   <Image
                     src={v.image}
@@ -35,6 +38,7 @@ export default function List() {
                     }}
                   />
                 </div>
+                <CartButton item={v} cartItems={cartItems} />
               </div>
               <div className="px-8">
                 <p>{v.title.toUpperCase()}</p>
