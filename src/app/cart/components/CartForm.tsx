@@ -50,6 +50,7 @@ function CartForm() {
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const target = e.target as HTMLButtonElement;
     if (target?.name === 'deleteMany') {
       const keys: string[] = Object.keys(checkBoxes).filter(
