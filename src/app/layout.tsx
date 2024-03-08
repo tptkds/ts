@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={inter.className + ' overflow-x-hidden select-none'}>
         <StoreProvider>
           <ThemeProvider attribute="class">
-            <div className="">
+            <div className="z-0">
               <header>
                 <DarkModeToggleButton />
                 <Notice />

@@ -1,27 +1,31 @@
 'use client';
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 
 function Links() {
+  const shopElementRef: HTMLElement | null = useRef(null);
+  const mouseOverHandler = () => {
+    shopElementRef.className.remove(hidden);
+  };
   return (
     <>
-      <li>
+      <li className="relative" onMouseOver={mouseOverHandler}>
         <Link href="/product/all">SHOP</Link>
-        <ul className="hidden absolute items-center">
-          <li>
-            <Link href="/product/all">All</Link>
+        <ul className=" absolute items-center z-50 top-12" ref={shopElementRef}>
+          <li className="py-2">
+            <Link href="/product/all/1">All</Link>
           </li>
-          <li>
-            <Link href="/">Electronics</Link>
+          <li className="py-1">
+            <Link href="/product/women/1">Women</Link>
           </li>
-          <li>
-            <Link href="/">Jewelery</Link>
+          <li className="py-1">
+            <Link href="/product/men/1">Men</Link>
           </li>
-          <li>
-            <Link href="/">Men&apos;s clothing</Link>
+          <li className="py-1">
+            <Link href="/product/jewelery/1">Jewelery</Link>
           </li>
-          <li>
-            <Link href="/">Women&apos;s clothing</Link>
+          <li className="py-1">
+            <Link href="/product/electronics/1">Electronics</Link>
           </li>
         </ul>
       </li>
