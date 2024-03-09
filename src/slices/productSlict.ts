@@ -2,29 +2,29 @@ import { CartItems, Product } from '@/types/globalTypes';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface productState {
-  products: Product[];
+  productList: Product[];
   currentPage: number;
-  url: string;
+  category: string;
   cartItems: CartItems;
 }
 
 export const productSlice = createSlice({
   name: 'productSlice',
   initialState: {
-    products: [],
+    productList: [],
     currentPage: 0,
-    url: '',
+    category: '',
     cartItems: {},
   } as productState,
   reducers: {
-    setProducts: (state, action) => {
-      state.products = action.payload;
+    setProductList: (state, action) => {
+      state.productList = action.payload;
     },
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
     },
-    setUrl: (state, action) => {
-      state.url = action.payload;
+    setCategory: (state, action) => {
+      state.category = action.payload;
     },
     setCartItems: (state, action) => {
       state.cartItems = action.payload;
@@ -32,6 +32,6 @@ export const productSlice = createSlice({
   },
 });
 
-export const { setProducts, setCurrentPage, setUrl, setCartItems } =
+export const { setProductList, setCurrentPage, setCategory, setCartItems } =
   productSlice.actions;
 export const productReducer = productSlice.reducer;

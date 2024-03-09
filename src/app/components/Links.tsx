@@ -3,16 +3,27 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 
 function Links() {
-  const shopElementRef: HTMLElement | null = useRef(null);
+  const shopElementRef = useRef<HTMLUListElement | null>(null);
   const mouseOverHandler = () => {
-    shopElementRef.className.remove(hidden);
+    shopElementRef.current?.classList.remove('hidden');
   };
+  const mouseOutHandler = () => {
+    shopElementRef.current?.classList.add('hidden');
+  };
+
   return (
     <>
-      <li className="relative" onMouseOver={mouseOverHandler}>
-        <Link href="/product/all">SHOP</Link>
-        <ul className=" absolute items-center z-50 top-12" ref={shopElementRef}>
-          <li className="py-2">
+      <li
+        className="relative h-full flex items-center"
+        onMouseOver={mouseOverHandler}
+        onMouseOut={mouseOutHandler}
+      >
+        <Link href="/product/all/1">SHOP</Link>
+        <ul
+          className=" absolute items-center z-50 top-16 hidden"
+          ref={shopElementRef}
+        >
+          <li className="py-2 pt-4">
             <Link href="/product/all/1">All</Link>
           </li>
           <li className="py-1">

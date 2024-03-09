@@ -1,6 +1,6 @@
 import { Product } from '@/types/globalTypes';
 
-export const getUrl = (slug: string): string => {
+export const getProductUrl = (slug: string): string => {
   switch (slug) {
     case 'all': {
       return 'https://fakestoreapi.com/products';

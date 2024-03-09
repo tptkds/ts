@@ -5,17 +5,25 @@ import { Product } from '@/types/globalTypes';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { ITEMSPERPAGE } from '@/constants/product';
 import CartButton from './CartButton';
+import { useRouter } from 'next/navigation';
 
 export default function List() {
+  const router = useRouter();
   const cartItems = useAppSelector((state) => state.product.cartItems);
-  const products: Product[] = useAppSelector((state) => state.product.products);
+  const productList: Product[] = useAppSelector(
+    (state) => state.product.productList
+  );
   const currentPage: number = useAppSelector(
     (state) => state.product.currentPage
   );
 
-  const startIndex = ITEMSPERPAGE * (currentPage - 1);
-  const endIndex = startIndex + 9;
-  const curProducts = products.slice(startIndex, endIndex);
+  const startIndex: number = ITEMSPERPAGE * (currentPage - 1);
+  const endIndex: number = startIndex + 9;
+  const curProducts: Product[] = productList.slice(startIndex, endIndex);
+
+  const handleClick = (id: string) => {
+    router.push(`/product/detail/${id}`);
+  };
 
   return (
     <div className="h-full">
@@ -24,9 +32,12 @@ export default function List() {
           return (
             <li
               key={v.id}
-              className="flex-col bg-white flex flex-wrap lg:w-1/3 md:w-1/2 sm:w-full h-lvh"
+              className="flex-col bg-white flex flex-wrap lg:w-1/3 md:w-1/2 sm:w-full h-svh"
             >
-              <div className=" relative w-full h-5/6 justify-center flex">
+              <div
+                className=" relative w-full h-4/6 justify-center flex"
+                onClick={() => handleClick(v.id)}
+              >
                 <div className=" relative w-3/6 h-full ">
                   <Image
                     src={v.image}
@@ -36,6 +47,7 @@ export default function List() {
                     style={{
                       objectFit: 'contain',
                     }}
+                    priority
                   />
                 </div>
                 <CartButton item={v} cartItems={cartItems} />

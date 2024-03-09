@@ -5,27 +5,36 @@ import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { setCurrentPage } from '@/slices/productSlict';
 import { Product } from '@/types/globalTypes';
+import next from 'next';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function Pagenation() {
-  const currentPage: number = useAppSelector(
-    (state) => state.product.currentPage
+  const dispatch = useAppDispatch();
+  const curCategory: string = useAppSelector((state) => state.product.category);
+  const currentPage = useAppSelector((state) => state.product.currentPage);
+  const productList: Product[] = useAppSelector(
+    (state) => state.product.productList
   );
-  const products: Product[] = useAppSelector((state) => state.product.products);
-  const totalItems: number = products.length;
+
+  const totalItems: number = productList.length;
   const totalPages: number = Math.ceil(totalItems / ITEMSPERPAGE);
 
-  const dispatch = useAppDispatch();
+  const router = useRouter();
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLButtonElement;
     const name: string = target.name;
 
+    let nextPage: string | number = '';
     if (name === 'newer') {
-      dispatch(setCurrentPage(currentPage - 1));
+      nextPage = Number(currentPage) - 1;
     } else if (name === 'older') {
-      dispatch(setCurrentPage(currentPage + 1));
+      nextPage = Number(currentPage) + 1;
     } else {
-      dispatch(setCurrentPage(Number(name)));
+      nextPage = Number(name);
     }
+
+    router.push(`/product/${curCategory}/${nextPage}`);
   };
 
   return (

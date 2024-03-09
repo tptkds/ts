@@ -24,13 +24,13 @@ export default function RootLayout({
       <body className={inter.className + ' overflow-x-hidden select-none'}>
         <StoreProvider>
           <ThemeProvider attribute="class">
-            <div className="z-0">
-              <header>
+            <div className="relative">
+              <header className=" relative z-10">
                 <DarkModeToggleButton />
                 <Notice />
                 <Nav />
               </header>
-              <main className="p-12">{children}</main>
+              <main className="py-0 p-12 z-0">{children}</main>
             </div>
           </ThemeProvider>
         </StoreProvider>

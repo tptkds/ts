@@ -1,14 +1,47 @@
-import { getProducts, getUrl } from '@/utilities/product';
+'use client';
+import React, { useEffect, useState } from 'react';
+import List from './components/List';
 import { Product } from '@/types/globalTypes';
-import ProductPage from '../components/ProductPage';
+import {
+  setCartItems,
+  setCurrentPage,
+  setProductList,
+  setCategory,
+} from '@/slices/productSlict';
+import Pagenation from './components/Pagenation';
+import { useAppSelector } from '@/hooks/useAppSelector';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
+import { getCartItemsLS } from '@/utilities/localstorage';
+import { AppDispatch } from '@/types/reduxTypes';
+import { GET } from '@/app/product/apis/route';
+import { getProductUrl } from '@/utilities/product';
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const url: string = getUrl(params.slug[0]);
-  const products: Product[] = await getProducts(url);
+function ProductPage({ params }: { params: { slug: string } }) {
+  const dispatch: AppDispatch = useAppDispatch();
+  const prevCategory: string = useAppSelector(
+    (state) => state.product.category
+  );
+  const curCategory: string = params.slug[0];
+  const urlForAPI: string = getProductUrl(curCategory);
+  const curPage: number = Number(params.slug[1]);
+
+  useEffect(() => {
+    dispatch(setCartItems(getCartItemsLS()));
+    const fetchData = async () => {
+      const json: Product[] = await GET(urlForAPI);
+      dispatch(setProductList(json));
+      dispatch(setCategory(curCategory));
+    };
+    if (prevCategory !== curCategory) fetchData();
+    dispatch(setCurrentPage(curPage));
+  }, []);
 
   return (
-    <div className="h-full">
-      <ProductPage products={products} url={url} />
-    </div>
+    <>
+      <List />
+      <Pagenation />
+    </>
   );
 }
+
+export default ProductPage;
