@@ -11,9 +11,8 @@ import {
 import Pagenation from './components/Pagenation';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { getCartItemsLS } from '@/utilities/localstorage';
 import { AppDispatch } from '@/types/reduxTypes';
-import { GET } from '@/app/product/apis/route';
+
 import { getProductUrl } from '@/utilities/product';
 
 function ProductPage({ params }: { params: { slug: string } }) {
@@ -22,17 +21,10 @@ function ProductPage({ params }: { params: { slug: string } }) {
     (state) => state.product.category
   );
   const curCategory: string = params.slug[0];
-  const urlForAPI: string = getProductUrl(curCategory);
   const curPage: number = Number(params.slug[1]);
 
   useEffect(() => {
-    dispatch(setCartItems(getCartItemsLS()));
-    const fetchData = async () => {
-      const json: Product[] = await GET(urlForAPI);
-      dispatch(setProductList(json));
-      dispatch(setCategory(curCategory));
-    };
-    if (prevCategory !== curCategory) fetchData();
+    if (prevCategory !== curCategory) dispatch(setCategory(curCategory));
     dispatch(setCurrentPage(curPage));
   }, []);
 

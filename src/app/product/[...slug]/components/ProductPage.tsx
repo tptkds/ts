@@ -11,7 +11,7 @@ import {
 import Pagenation from './Pagenation';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { getCartItemsLS } from '@/utilities/localstorage';
+import { getCartItemsLocalStorage } from '@/utilities/localstorage';
 import { AppDispatch } from '@/types/reduxTypes';
 
 function ProductPage({ products, url }: { products: Product[]; url: string }) {
@@ -19,7 +19,7 @@ function ProductPage({ products, url }: { products: Product[]; url: string }) {
   const prevUrl: string = useAppSelector((state) => state.product.url);
 
   useEffect(() => {
-    dispatch(setCartItems(getCartItemsLS()));
+    dispatch(setCartItems(getCartItemsLocalStorage()));
   }, []);
 
   useEffect(() => {

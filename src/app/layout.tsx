@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import DarkModeToggleButton from './components/DarkModeToggleButton';
 import './globals.css';
 import Notice from './components/Notice';
+import InitialStore from './InitialStore';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={inter.className + ' overflow-x-hidden select-none'}>
         <StoreProvider>
           <ThemeProvider attribute="class">
+            <InitialStore />
             <div className="relative">
               <header className=" relative z-10">
                 <DarkModeToggleButton />

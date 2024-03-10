@@ -1,7 +1,7 @@
 import { CartItems, Product } from '@/types/globalTypes';
 
-export const setCartItemsLS = (item: Product) => {
-  const cartItems: CartItems | never[] = getCartItemsLS();
+export const setCartItemsLocalStorage = (item: Product) => {
+  const cartItems: CartItems | never[] = getCartItemsLocalStorage();
   const key: string = item.id;
   const value: Product = item;
 
@@ -19,7 +19,7 @@ export const setCartItemsLS = (item: Product) => {
   }
 };
 
-export const getCartItemsLS = (): CartItems => {
+export const getCartItemsLocalStorage = (): CartItems => {
   if (typeof window === 'undefined') return {};
   const jsonString = localStorage.getItem('cartItems');
   if (jsonString) {
@@ -29,8 +29,8 @@ export const getCartItemsLS = (): CartItems => {
   return {};
 };
 
-export const deleteCartItemsLS = (keys: string[]) => {
-  let newCartItems: CartItems = getCartItemsLS();
+export const deleteCartItemsLocalStorage = (keys: string[]) => {
+  let newCartItems: CartItems = getCartItemsLocalStorage();
   keys.forEach((key) => {
     delete newCartItems[key];
   });

@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { Product } from '@/types/globalTypes';
 import { GET } from '../apis/route';
+import AddCartButton from './components/AddCartButton';
+import AddCartModal from './components/AddCartModal';
 
 export default function Detail({ params }: { params: { slug: string } }) {
   const [curItem, setCurItem] = useState<Product>();
@@ -23,9 +25,8 @@ export default function Detail({ params }: { params: { slug: string } }) {
   if (!curItem) {
     return;
   }
-  console.log(curItem);
   return (
-    <div className="h-svh flex ">
+    <div className="h-svh flex p-24">
       <div className=" relative w-3/6 h-full">
         <Image
           src={curItem?.image}
@@ -37,7 +38,15 @@ export default function Detail({ params }: { params: { slug: string } }) {
           }}
         />
       </div>
-      <div>{curItem.title}</div>
+      <div>
+        <p>{curItem.title}</p>
+        <p className="py-2.5">{curItem.description}</p>
+        <p>{curItem.price}</p>
+        <div className="flex flex-col">
+          <button>BUY NOW</button>
+          <AddCartButton item={curItem} />
+        </div>
+      </div>
     </div>
   );
 }

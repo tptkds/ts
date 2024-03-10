@@ -1,9 +1,8 @@
 'use client';
 import { CartItems } from '@/types/globalTypes';
 import {
-  deleteCartItemsLS,
-  getCartItemsLS,
-  setCartItemsLS,
+  deleteCartItemsLocalStorage,
+  getCartItemsLocalStorage,
 } from '@/utilities/localstorage';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
@@ -19,7 +18,7 @@ function CartForm() {
   let keys: string[] = cartItems && Object.keys(cartItems);
 
   useEffect(() => {
-    const cartItems = getCartItemsLS();
+    const cartItems = getCartItemsLocalStorage();
     setCartItems(cartItems);
 
     let checkBoxesData: { [key: string]: boolean } = {};
@@ -56,11 +55,11 @@ function CartForm() {
       const keys: string[] = Object.keys(checkBoxes).filter(
         (key) => checkBoxes[key]
       );
-      deleteCartItemsLS(keys);
+      deleteCartItemsLocalStorage(keys);
     } else {
-      deleteCartItemsLS([target.id]);
+      deleteCartItemsLocalStorage([target.id]);
     }
-    setCartItems(getCartItemsLS());
+    setCartItems(getCartItemsLocalStorage());
   };
 
   return (
