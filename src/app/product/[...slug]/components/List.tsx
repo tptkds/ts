@@ -57,7 +57,7 @@ export default function List() {
               className="flex-col bg-white flex flex-wrap lg:w-1/3 md:w-1/2 sm:w-full h-svh"
             >
               <div
-                className=" relative w-full h-4/6 justify-center flex"
+                className=" relative w-full h-4/6 justify-center flex cursor-pointer"
                 onClick={() => handleClick(v.id)}
               >
                 <div className=" relative w-3/6 h-full ">
@@ -75,7 +75,9 @@ export default function List() {
                 <CartButton item={v} cartItems={cartItems} />
               </div>
               <div className="px-8">
-                <p>{v.title.toUpperCase()}</p>
+                <p className="cursor-pointer" onClick={() => handleClick(v.id)}>
+                  {v.title.toUpperCase()}
+                </p>
                 <p>${v.price.toLocaleString()}</p>
               </div>
             </li>

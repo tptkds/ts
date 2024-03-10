@@ -4,7 +4,7 @@ import { setCartItems } from '@/slices/productSlict';
 import { CartItems, Product } from '@/types/globalTypes';
 import {
   getCartItemsLocalStorage,
-  setCartItemsLocalStorage,
+  addCartItemsLocalStorage,
 } from '@/utilities/localstorage';
 import React from 'react';
 
@@ -17,8 +17,10 @@ function CartButton({
 }) {
   const dispatch = useAppDispatch();
 
-  const handleClick = () => {
-    setCartItemsLocalStorage(item);
+  const handleClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addCartItemsLocalStorage(item);
     const newCartItems: CartItems | undefined = getCartItemsLocalStorage();
     if (newCartItems !== undefined) dispatch(setCartItems(newCartItems));
     else dispatch(setCartItems({}));

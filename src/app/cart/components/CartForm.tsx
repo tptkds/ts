@@ -1,4 +1,6 @@
 'use client';
+import { useAppSelector } from '@/hooks/useAppSelector';
+import { setCartItems } from '@/slices/productSlict';
 import { CartItems } from '@/types/globalTypes';
 import {
   deleteCartItemsLocalStorage,
@@ -6,27 +8,29 @@ import {
 } from '@/utilities/localstorage';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 interface CheckBoxes {
   [key: string]: boolean;
 }
 
 function CartForm() {
-  const [cartItems, setCartItems] = useState<CartItems>({});
+  const dispatch = useDispatch();
   const [checkBoxes, setCheckBoxes] = useState<CheckBoxes>({});
   const [checkAllBox, setCheckAllBox] = useState<boolean>(false);
-  let keys: string[] = cartItems && Object.keys(cartItems);
+  const cartItems: CartItems = useAppSelector(
+    (state) => state.product.cartItems
+  );
+
+  let cartItemKeys: string[] = cartItems && Object.keys(cartItems);
 
   useEffect(() => {
-    const cartItems = getCartItemsLocalStorage();
-    setCartItems(cartItems);
-
     let checkBoxesData: { [key: string]: boolean } = {};
     Object.keys(cartItems).forEach((key) => {
       checkBoxesData[key] = false;
     });
     setCheckBoxes(checkBoxesData);
-  }, []);
+  }, [cartItems]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
@@ -35,7 +39,7 @@ function CartForm() {
       const newCheckAllBox = !checkAllBox;
       const newCheckBoxes: CheckBoxes = {};
 
-      keys.forEach((key) => (newCheckBoxes[key] = newCheckAllBox));
+      cartItemKeys.forEach((key) => (newCheckBoxes[key] = newCheckAllBox));
       setCheckBoxes(newCheckBoxes);
       setCheckAllBox(newCheckAllBox);
     } else {
@@ -59,9 +63,9 @@ function CartForm() {
     } else {
       deleteCartItemsLocalStorage([target.id]);
     }
-    setCartItems(getCartItemsLocalStorage());
+    dispatch(setCartItems(getCartItemsLocalStorage()));
   };
-
+  if (!cartItems) return;
   return (
     <div>
       <form action="">
@@ -91,8 +95,8 @@ function CartForm() {
               <p className="mr-8 w-12"></p>
             </div>
           </li>
-          {keys.length !== 0
-            ? keys.map((v) => {
+          {cartItemKeys.length !== 0
+            ? cartItemKeys.map((v) => {
                 return (
                   <li key={v} className="my-4 flex items-center">
                     <input
@@ -104,8 +108,8 @@ function CartForm() {
                     />
                     <div className="relative lg:w-1/12 md:w-2/6 sm:w-2/12  h-24 w-3/12 mx-4">
                       <Image
-                        src={cartItems[v].image}
-                        alt={cartItems[v].title}
+                        src={cartItems[v].product.image}
+                        alt={cartItems[v].product.title}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         fill
                         style={{
@@ -115,16 +119,16 @@ function CartForm() {
                     </div>
                     <div className="w-full flex ">
                       <div className=" w-2/5 whitespace-pre-line=true flex items-center mr-8">
-                        <p>{cartItems[v].title}</p>
+                        <p>{cartItems[v].product.title}</p>
                       </div>
                       <div className="grow w-1/5 whitespace-pre-line=true  flex justify-end flex items-center">
-                        <p>{cartItems[v].price}</p>
+                        <p>{cartItems[v].product.price}</p>
                       </div>
                       <div className="grow w-1/5 whitespace-pre-line=true  flex justify-end flex items-center">
-                        <p>{'개수'}</p>
+                        <p>{cartItems[v].count}</p>
                       </div>
                       <div className="grow w-1/5 whitespace-pre-line=true  flex justify-end flex items-center">
-                        <p>{'총합'}</p>
+                        <p>{cartItems[v].product.price * cartItems[v].count}</p>
                       </div>
                     </div>
                     <div className="flex ml-8 w-12">

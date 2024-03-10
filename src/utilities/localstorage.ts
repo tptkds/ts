@@ -1,19 +1,27 @@
 import { CartItems, Product } from '@/types/globalTypes';
 
-export const setCartItemsLocalStorage = (item: Product) => {
+export const addCartItemsLocalStorage = (item: Product) => {
   const cartItems: CartItems | never[] = getCartItemsLocalStorage();
   const key: number = item.id;
-  const value: Product = item;
+  const product: Product = item;
 
   if (!cartItems || Object.keys(cartItems).length === 0) {
-    const newCartItems = { [key]: value };
+    const newCartItems = { [key]: { product: product, count: 1 } };
     localStorage.setItem('cartItems', JSON.stringify(newCartItems));
   } else {
     let newCartItems = { ...cartItems };
     if (key in cartItems) {
-      delete newCartItems[key];
+      const curCount = cartItems[key].count;
+      const nextCount = curCount + 1;
+      newCartItems = {
+        ...cartItems,
+        [key]: { product: product, count: nextCount },
+      };
     } else {
-      newCartItems = { ...cartItems, [key]: value };
+      newCartItems = {
+        ...cartItems,
+        [key]: { product: product, count: 1 },
+      };
     }
     localStorage.setItem('cartItems', JSON.stringify(newCartItems));
   }

@@ -5,18 +5,13 @@ import {
   CATEGIRIES_MATCH,
   ITEMSPERPAGE,
 } from '@/constants/product';
-import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { useAppSelector } from '@/hooks/useAppSelector';
-import { setCurrentPage } from '@/slices/productSlict';
 import { Product } from '@/types/globalTypes';
-import next from 'next';
 import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 export default function Pagenation() {
-  const dispatch = useAppDispatch();
   const curCategory = useAppSelector((state) => state.product.category);
-  const cartItems = useAppSelector((state) => state.product.cartItems);
   let productList: Product[] = useAppSelector(
     (state) => state.product.productList
   );

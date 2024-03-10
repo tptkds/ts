@@ -8,5 +8,5 @@ export interface Product {
 }
 
 export interface CartItems {
-  [productId: string]: Product;
+  [productId: string]: { product: Product; count: number };
 }

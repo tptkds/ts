@@ -3,7 +3,7 @@ import { setCartItems } from '@/slices/productSlict';
 import { CartItems, Product } from '@/types/globalTypes';
 import {
   getCartItemsLocalStorage,
-  setCartItemsLocalStorage,
+  addCartItemsLocalStorage,
 } from '@/utilities/localstorage';
 import { useRouter } from 'next/navigation';
 import React, { useRef } from 'react';
@@ -20,7 +20,7 @@ export default function AddCartButton({ item }: { item: Product }) {
     } else if (e.target.name === 'continueShopping') {
       modal.current?.classList.add('hidden');
     } else {
-      setCartItemsLocalStorage(item);
+      addCartItemsLocalStorage(item);
       const newCartItems: CartItems | undefined = getCartItemsLocalStorage();
       if (newCartItems !== undefined) dispatch(setCartItems(newCartItems));
       else dispatch(setCartItems({}));
