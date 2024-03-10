@@ -1,27 +1,49 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { Product } from '@/types/globalTypes';
 import { useAppSelector } from '@/hooks/useAppSelector';
-import { ITEMSPERPAGE } from '@/constants/product';
+import {
+  CATEGIRIES,
+  CATEGIRIES_MATCH,
+  ITEMSPERPAGE,
+} from '@/constants/product';
 import CartButton from './CartButton';
 import { useRouter } from 'next/navigation';
 
 export default function List() {
   const router = useRouter();
+  const curCategory = useAppSelector((state) => state.product.category);
   const cartItems = useAppSelector((state) => state.product.cartItems);
-  const productList: Product[] = useAppSelector(
+  let productList: Product[] = useAppSelector(
     (state) => state.product.productList
   );
   const currentPage: number = useAppSelector(
     (state) => state.product.currentPage
   );
 
+  const curProductList: Product[] = useMemo(() => {
+    if (productList.length === 0) {
+      return [];
+    }
+    if (curCategory === 'all') {
+      return productList;
+    } else {
+      const cartegoryIndex: number = CATEGIRIES.findIndex(
+        (v) => v === curCategory
+      );
+      const filteredData: Product[] = productList.filter((item) => {
+        return item.category === CATEGIRIES_MATCH[cartegoryIndex];
+      });
+      return filteredData;
+    }
+  }, [productList, curCategory]);
+
   const startIndex: number = ITEMSPERPAGE * (currentPage - 1);
   const endIndex: number = startIndex + 9;
-  const curProducts: Product[] = productList.slice(startIndex, endIndex);
+  const curProducts: Product[] = curProductList.slice(startIndex, endIndex);
 
-  const handleClick = (id: string) => {
+  const handleClick = (id: number) => {
     router.push(`/product/detail/${id}`);
   };
 

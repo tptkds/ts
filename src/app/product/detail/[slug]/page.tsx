@@ -3,24 +3,23 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { Product } from '@/types/globalTypes';
-import { GET } from '../apis/route';
+
 import AddCartButton from './components/AddCartButton';
-import AddCartModal from './components/AddCartModal';
 
-export default function Detail({ params }: { params: { slug: string } }) {
+export default function Detail({ params }: { params: { slug: number } }) {
   const [curItem, setCurItem] = useState<Product>();
-
-  const itemId = params.slug;
+  const productList: Product[] = useAppSelector(
+    (state) => state.product.productList
+  );
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res: Product = await GET(
-        `https://fakestoreapi.com/products/${itemId}`
-      );
-      setCurItem(res);
-    };
-    fetchData();
-  }, []);
+    console.log(productList);
+    const item: Product | undefined = productList.find(
+      (item) => item.id == params.slug
+    );
+    console.log(item);
+    setCurItem(item);
+  }, [productList, params.slug]);
 
   if (!curItem) {
     return;

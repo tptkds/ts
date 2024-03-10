@@ -2,7 +2,7 @@ import { CartItems, Product } from '@/types/globalTypes';
 
 export const setCartItemsLocalStorage = (item: Product) => {
   const cartItems: CartItems | never[] = getCartItemsLocalStorage();
-  const key: string = item.id;
+  const key: number = item.id;
   const value: Product = item;
 
   if (!cartItems || Object.keys(cartItems).length === 0) {
