@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google';
 import StoreProvider from './StoreProvider';
 import ThemeProvider from './ThemeProvider';
 import Nav from './components/Nav';
-import DarkModeToggleButton from './components/DarkModeToggleButton';
 import './globals.css';
 import Notice from './components/Notice';
 import InitialStore from './InitialStore';
@@ -28,11 +27,20 @@ export default function RootLayout({
             <InitialStore />
             <div className="relative">
               <header className=" relative z-10">
-                <DarkModeToggleButton />
                 <Notice />
                 <Nav />
               </header>
               <main className="py-0 p-12 z-0">{children}</main>
+              <footer>
+                <ul>
+                  <li>GITHUB</li>
+                  <li>BLOG</li>
+                </ul>
+                <ul>
+                  <li>CEO: YOUGYEONG KIM</li>
+                  <li>EMAIL: tptkds12@gmail.com</li>
+                </ul>
+              </footer>
             </div>
           </ThemeProvider>
         </StoreProvider>

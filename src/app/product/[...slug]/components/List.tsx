@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import Image from 'next/image';
 import { Product } from '@/types/globalTypes';
 import { useAppSelector } from '@/hooks/useAppSelector';
@@ -54,7 +54,7 @@ export default function List() {
           return (
             <li
               key={v.id}
-              className="flex-col bg-white flex flex-wrap lg:w-1/3 md:w-1/2 sm:w-full h-svh"
+              className="flex-col flex flex-wrap lg:w-1/3 md:w-1/2 sm:w-full h-svh"
             >
               <div
                 className=" relative w-full h-4/6 justify-center flex cursor-pointer"

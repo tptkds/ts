@@ -104,7 +104,7 @@ function CartForm() {
                       type="checkbox"
                       className="mr-4"
                       onChange={handleChange}
-                      checked={checkBoxes[v]}
+                      checked={checkBoxes[v] || false}
                     />
                     <div className="relative lg:w-1/12 md:w-2/6 sm:w-2/12  h-24 w-3/12 mx-4">
                       <Image

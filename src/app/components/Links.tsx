@@ -13,6 +13,9 @@ function Links() {
 
   return (
     <>
+      <li>
+        <Link href="/">HOME</Link>
+      </li>
       <li
         className="relative h-full flex items-center"
         onMouseOver={mouseOverHandler}
@@ -39,9 +42,6 @@ function Links() {
             <Link href="/product/electronics/1">Electronics</Link>
           </li>
         </ul>
-      </li>
-      <li>
-        <button>SEARCH</button>
       </li>
       <li>
         <Link href="/">LOGIN</Link>
