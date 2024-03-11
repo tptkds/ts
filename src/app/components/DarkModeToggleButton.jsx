@@ -15,7 +15,7 @@ export default function DarkModeToggleButton() {
   if (!mounted) {
     return null;
   }
-  const handleClick = () => {
+  const handleClick = (e) => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
   return (

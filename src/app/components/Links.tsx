@@ -1,6 +1,8 @@
 'use client';
 import React, { useRef } from 'react';
 import Link from 'next/link';
+import { CiLogin, CiShoppingCart } from 'react-icons/ci';
+import Search from './Search';
 
 function Links() {
   const shopElementRef = useRef<HTMLUListElement | null>(null);
@@ -13,11 +15,11 @@ function Links() {
 
   return (
     <>
-      <li>
+      <li className="basis-1/4 flex justify-center">
         <Link href="/">HOME</Link>
       </li>
       <li
-        className="relative h-full flex items-center"
+        className="relative h-full flex items-center basis-1/4  justify-center"
         onMouseOver={mouseOverHandler}
         onMouseOut={mouseOutHandler}
       >
@@ -43,11 +45,18 @@ function Links() {
           </li>
         </ul>
       </li>
-      <li>
-        <Link href="/">LOGIN</Link>
-      </li>
-      <li>
-        <Link href="/cart">CART</Link>
+      <li className="basis-1/4">
+        <ul className="flex justify-end items-center">
+          <li className="mr-4">
+            <Search />
+          </li>
+          <li className="mr-4 text-xs">
+            <Link href="/">LOGIN</Link>
+          </li>
+          <li className="mr-12 text-xs">
+            <Link href="/cart">CART</Link>
+          </li>
+        </ul>
       </li>
     </>
   );

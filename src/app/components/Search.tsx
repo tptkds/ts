@@ -34,16 +34,16 @@ function Search() {
   if (!isLoaded) return;
   return (
     <>
-      <div className="flex items-center relative">
+      <div className="flex items-center relative w-full">
         <IoIosSearch className="text-xl" />
-        <input
+        {/* <input
           type="text"
           value={searchText}
           onChange={handleChange}
-          className="bg-transparent border-b border-solid border-black focus:outline-none"
-        />
+          className="bg-transparent border-b border-solid border-black focus:outline-none dark:border-white"
+        /> */}
         <div className="absolute top-10 w-full">
-          <ul className="bg-white">
+          <ul className="bg-white dark:bg-black dark:bg-opacity-60 dark:text-white">
             {searchedDatas.map((item) => (
               <li key={item.id} className="truncate px-4 py-2 ">
                 <Link href={`/product/detail/${item.id}`}>{item.title}</Link>

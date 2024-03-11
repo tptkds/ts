@@ -2,7 +2,7 @@ import React from 'react';
 
 function Notice() {
   return (
-    <div className="w-full whitespace-nowrap h-6 bg-white">
+    <div className="w-full whitespace-nowrap h-6 bg-white dark:bg-black dark:text-white dark:bg-opacity-60">
       <div className="slideText">
         <span className="text-sm  mr-12">
           The 24S/S product has been updated. You can check all the products in

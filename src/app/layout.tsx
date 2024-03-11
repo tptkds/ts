@@ -1,17 +1,15 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import StoreProvider from './StoreProvider';
 import ThemeProvider from './ThemeProvider';
 import Nav from './components/Nav';
 import './globals.css';
 import Notice from './components/Notice';
 import InitialStore from './InitialStore';
-import Image from 'next/image';
-import { FaGithub } from 'react-icons/fa';
-import { SiVelog } from 'react-icons/si';
+import Footer from './components/Footer';
+import { Inter, Rock_3D } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
-
+const rock3D = Rock_3D({ subsets: ['latin'], weight: ['400'] });
 export const metadata: Metadata = {
   title: 'showfinnmore',
   description: '여성 쇼핑몰입니다.',
@@ -26,15 +24,9 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <body
         className={
-          inter.className + ' overflow-x-hidden select-none h-dvh relative'
+          rock3D.className + ' overflow-x-hidden select-none h-dvh relative'
         }
       >
-        <Image
-          src="/backgrounds/home-bg.jpg"
-          alt="메인 배경 이미지"
-          fill
-          sizes="100vw"
-        />
         <StoreProvider>
           <ThemeProvider attribute="class">
             <InitialStore />
@@ -46,23 +38,7 @@ export default function RootLayout({
                 </header>
                 <main className="py-0 p-12 z-0">{children}</main>
               </div>
-              <footer
-                className="relative bg-white bg-opacity-60 h-1/6 flex flex-col items-center pt-6"
-                style={{ transform: 'translateY(-100%)' }}
-              >
-                <ul className="flex">
-                  <li className="mr-4">
-                    <FaGithub />
-                  </li>
-                  <li>
-                    <SiVelog />
-                  </li>
-                </ul>
-                <ul>
-                  <li>DEVELOPER: YOUGYEONG KIM</li>
-                  <li>EMAIL: tptkds12@gmail.com</li>
-                </ul>
-              </footer>
+              <Footer />
             </div>
           </ThemeProvider>
         </StoreProvider>

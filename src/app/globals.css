@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Ojuju:wght@200..800&display=swap');
 
 :root {
   --layout-row-gap: 30px;
@@ -27,4 +28,15 @@
   100% {
     transform: translateX(-100%);
   }
+}
+
+.h-1\\/12 {
+  height: 8.333333%;
+}
+
+.ojuju-400 {
+  font-family: 'Ojuju', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
