@@ -43,8 +43,6 @@ function CartForm() {
       setCheckBoxes(newCheckBoxes);
       setCheckAllBox(newCheckAllBox);
     } else {
-      console.log(target, target.name, checkBoxes[target.name]);
-
       setCheckBoxes((prevCheckBoxes) => ({
         ...prevCheckBoxes,
         [target.name]: !prevCheckBoxes[target.name],

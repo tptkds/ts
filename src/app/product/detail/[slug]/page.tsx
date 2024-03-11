@@ -13,11 +13,9 @@ export default function Detail({ params }: { params: { slug: number } }) {
   );
 
   useEffect(() => {
-    console.log(productList);
     const item: Product | undefined = productList.find(
       (item) => item.id == params.slug
     );
-    console.log(item);
     setCurItem(item);
   }, [productList, params.slug]);
 
@@ -25,19 +23,20 @@ export default function Detail({ params }: { params: { slug: number } }) {
     return;
   }
   return (
-    <div className="h-svh flex p-24">
-      <div className=" relative w-3/6 h-full">
-        <Image
-          src={curItem?.image}
-          alt={curItem?.title}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          fill
-          style={{
-            objectFit: 'contain',
-          }}
-        />
+    <div className="h-80svh flex p-20 justify-center">
+      <div className="  w-3/6 h-full flex justify-center items-start">
+        <div className="relative w-4/6 h-4/6">
+          <Image
+            src={curItem?.image}
+            alt={curItem?.title}
+            fill
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </div>
       </div>
-      <div>
+      <div className="w-3/6">
         <p>{curItem.title}</p>
         <p className="py-2.5">{curItem.description}</p>
         <p>{curItem.price}</p>

@@ -11,7 +11,6 @@ function Search() {
   const [searchedDatas, setSearchedData] = useState<Product[]>([]);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const searchData = (text: string) => {
-    console.log(productList);
     const datas: Product[] = productList.filter((item) => {
       return item.title.toLowerCase().includes(text.toLowerCase());
     });

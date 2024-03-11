@@ -31,8 +31,11 @@ export default function AddCartButton({ item }: { item: Product }) {
   return (
     <>
       <button onClick={handleClick}>ADD CART</button>
-      <div className="flex flex-col hidden" ref={modal}>
-        상품이 장바구니에 담겼어요.
+      <div
+        className="absolute flex flex-col modal-center shadow-md"
+        ref={modal}
+      >
+        <p>상품이 장바구니에 담겼어요.</p>
         <div className="flex flex-row ">
           <button name="goCart" onClick={handleClick}>
             장바구니로 이동

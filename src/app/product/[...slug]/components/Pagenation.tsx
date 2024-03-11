@@ -57,40 +57,34 @@ export default function Pagenation() {
   };
 
   return (
-    <div>
-      <ul className="flex justify-center items-center	">
-        <li className="p-2.5">
-          <button
-            name="newer"
-            onClick={handleClick}
-            disabled={currentPage === 1}
-          >
-            NEWER
-          </button>
-        </li>
-        {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-          (page) => (
-            <li key={page} className="p-2.5">
-              <button
-                name={page.toString()}
-                onClick={handleClick}
-                disabled={page === currentPage}
-              >
-                {page}
-              </button>
-            </li>
-          )
-        )}
-        <li className="p-2.5">
-          <button
-            name="older"
-            onClick={handleClick}
-            disabled={currentPage === totalPages}
-          >
-            OLDER
-          </button>
-        </li>
-      </ul>
-    </div>
+    <ul className="flex justify-center items-center	mb-8">
+      <li className="p-2.5">
+        <button name="newer" onClick={handleClick} disabled={currentPage === 1}>
+          NEWER
+        </button>
+      </li>
+      {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+        (page) => (
+          <li key={page} className="p-2.5">
+            <button
+              name={page.toString()}
+              onClick={handleClick}
+              disabled={page === currentPage}
+            >
+              {page}
+            </button>
+          </li>
+        )
+      )}
+      <li className="p-2.5">
+        <button
+          name="older"
+          onClick={handleClick}
+          disabled={currentPage === totalPages}
+        >
+          OLDER
+        </button>
+      </li>
+    </ul>
   );
 }

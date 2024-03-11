@@ -6,13 +6,19 @@ import './globals.css';
 import Notice from './components/Notice';
 import InitialStore from './InitialStore';
 import Footer from './components/Footer';
-import { Inter, Rock_3D } from 'next/font/google';
+import { Inter, Josefin_Sans, Noto_Sans } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
-const rock3D = Rock_3D({ subsets: ['latin'], weight: ['400'] });
+const josefinSans = Josefin_Sans({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+});
+const notoSans = Noto_Sans({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+});
 export const metadata: Metadata = {
   title: 'showfinnmore',
-  description: '여성 쇼핑몰입니다.',
+  description: '여자 옷, 남자 옷, 악세사리, 전자제품 판매 쇼핑몰',
 };
 
 export default function RootLayout({
@@ -24,14 +30,14 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <body
         className={
-          rock3D.className + ' overflow-x-hidden select-none h-dvh relative'
+          notoSans.className + ' overflow-x-hidden select-none h-dvh relative'
         }
       >
         <StoreProvider>
           <ThemeProvider attribute="class">
             <InitialStore />
-            <div className="relative h-dvh">
-              <div className="min-h-full">
+            <div className="relative h-dvh dark:bg-zinc-900 dark:text-white">
+              <div className="min-h-full dark:bg-zinc-900 dark:text-white">
                 <header className=" relative z-10">
                   <Notice />
                   <Nav />

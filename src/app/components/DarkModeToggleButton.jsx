@@ -24,6 +24,7 @@ export default function DarkModeToggleButton() {
         duration={750}
         toggled={theme === 'dark'}
         onToggle={handleClick}
+        className="text-lg"
       />
     </>
   );

@@ -1,12 +1,14 @@
 'use client';
+import React from 'react';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { setCartItems } from '@/slices/productSlict';
 import { CartItems, Product } from '@/types/globalTypes';
 import {
   getCartItemsLocalStorage,
   addCartItemsLocalStorage,
+  deleteCartItemsLocalStorage,
 } from '@/utilities/localstorage';
-import React from 'react';
+import { PiShoppingBagFill, PiShoppingBagLight } from 'react-icons/pi';
 
 function CartButton({
   item,
@@ -16,19 +18,28 @@ function CartButton({
   cartItems: CartItems;
 }) {
   const dispatch = useAppDispatch();
+  const keysInCart: string[] = Object.keys(cartItems);
 
   const handleClick = (e) => {
-    e.preventDefault();
     e.stopPropagation();
-    addCartItemsLocalStorage(item);
+
+    if ([...keysInCart].includes(item.id.toString()))
+      deleteCartItemsLocalStorage([item.id.toString()]);
+    else addCartItemsLocalStorage(item);
     const newCartItems: CartItems | undefined = getCartItemsLocalStorage();
     if (newCartItems !== undefined) dispatch(setCartItems(newCartItems));
     else dispatch(setCartItems({}));
   };
 
   return (
-    <div className="absolute bottom-0 right-0" onClick={handleClick}>
-      <button> {cartItems[item.id] ? 'unCartButton' : 'CartButton'}</button>
+    <div className="absolute bottom-0 right-10" onClick={handleClick}>
+      <button>
+        {cartItems[item.id] ? (
+          <PiShoppingBagFill style={{ fontSize: '28px' }} />
+        ) : (
+          <PiShoppingBagLight style={{ fontSize: '28px' }} />
+        )}
+      </button>
     </div>
   );
 }

@@ -54,17 +54,16 @@ export default function List() {
           return (
             <li
               key={v.id}
-              className="flex-col flex flex-wrap lg:w-1/3 md:w-1/2 sm:w-full h-svh"
+              className="flex-col flex flex-wrap lg:w-1/3 md:w-1/2 sm:w-full h-80svh p-4"
             >
               <div
-                className=" relative w-full h-4/6 justify-center flex cursor-pointer"
+                className=" relative w-full h-4/6 justify-center flex cursor-pointer "
                 onClick={() => handleClick(v.id)}
               >
-                <div className=" relative w-3/6 h-full ">
+                <div className=" relative w-full h-5/6 bg-white min-w-52 max-w-64">
                   <Image
                     src={v.image}
                     alt={v.title}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     fill
                     style={{
                       objectFit: 'contain',
@@ -74,8 +73,11 @@ export default function List() {
                 </div>
                 <CartButton item={v} cartItems={cartItems} />
               </div>
-              <div className="px-8">
-                <p className="cursor-pointer" onClick={() => handleClick(v.id)}>
+              <div className="px-8 text-sm mt-6">
+                <p
+                  className="cursor-pointer mb-2"
+                  onClick={() => handleClick(v.id)}
+                >
                   {v.title.toUpperCase()}
                 </p>
                 <p>${v.price.toLocaleString()}</p>
