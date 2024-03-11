@@ -1,20 +1,21 @@
 'use client';
 import { useAppSelector } from '@/hooks/useAppSelector';
-import React, { useState } from 'react';
+import { Product } from '@/types/globalTypes';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { IoIosSearch } from 'react-icons/io';
 
 function Search() {
   const productList = useAppSelector((state) => state.product.productList);
   const [searchText, setSearchText] = useState<string>('');
-  const [searchedTitles, setSearchedTitles] = useState<string[]>([]);
-
+  const [searchedDatas, setSearchedData] = useState<Product[]>([]);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const searchData = (text: string) => {
     console.log(productList);
-    const searchedDatas = productList.filter((item) => {
+    const datas: Product[] = productList.filter((item) => {
       return item.title.toLowerCase().includes(text.toLowerCase());
     });
-    console.log(searchedDatas);
-    const titles = searchedDatas.map((item) => item.title);
-    setSearchedTitles(titles ? titles : []);
+    setSearchedData(datas ? datas : []);
   };
 
   const handleChange = (e) => {
@@ -22,15 +23,34 @@ function Search() {
     setSearchText(e.target.value);
     if (e.target.value !== '') searchData(e.target.value);
     else {
-      setSearchedTitles([]);
+      setSearchedData([]);
     }
   };
 
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) return;
   return (
     <>
-      <div>
-        <input type="text" value={searchText} onChange={handleChange} />
-        <div className="absolute">{searchedTitles}</div>
+      <div className="flex items-center relative">
+        <IoIosSearch className="text-xl" />
+        <input
+          type="text"
+          value={searchText}
+          onChange={handleChange}
+          className="bg-transparent border-b border-solid border-black focus:outline-none"
+        />
+        <div className="absolute top-10 w-full">
+          <ul className="bg-white">
+            {searchedDatas.map((item) => (
+              <li key={item.id} className="truncate px-4 py-2 ">
+                <Link href={`/product/detail/${item.id}`}>{item.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );

@@ -4,9 +4,9 @@ import Search from './Search';
 
 export default function Nav() {
   return (
-    <div className="flex m-4 header-bottom sticky h-16	shadow-md rounded-xl bg-opacity-50">
+    <div className="flex m-4 header-bottom sticky h-16	shadow-md rounded-xl bg-white bg-opacity-60">
       <nav className="w-full">
-        <ul className=" flex flex-row justify-around items-center h-full text-gray-700 font-semibold text-sm">
+        <ul className=" flex flex-row justify-around items-center h-full font-semibold text-sm">
           <li>
             <ul className="flex">
               <li className="">
