@@ -1,13 +1,21 @@
 'use client';
 import React, { useEffect } from 'react';
 import { getProductList } from './apis/product';
-import { useDispatch } from 'react-redux';
-import { setCartItems, setProductList } from '@/slices/productSlict';
-import { Product } from '@/types/globalTypes';
-import { getCartItemsLocalStorage } from '@/utilities/localstorage';
+import {
+  setCartItems,
+  setProductList,
+  setWishlist,
+} from '@/slices/productSlict';
+import { CartItems, Product, Wishlist } from '@/types/globalTypes';
+import {
+  getCartItemsLocalStorage,
+  getWishlistLocalStorage,
+} from '@/utilities/localstorage';
+import { AppDispatch } from '@/types/reduxTypes';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
 
 export default function InitialStore() {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useAppDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,9 +23,12 @@ export default function InitialStore() {
       dispatch(setProductList(productList));
     };
     fetchData();
-    const cartItems = getCartItemsLocalStorage();
 
+    const cartItems: CartItems = getCartItemsLocalStorage();
     dispatch(setCartItems(cartItems));
+
+    const wishlist: Wishlist = getWishlistLocalStorage();
+    dispatch(setWishlist(wishlist));
   }, [dispatch]);
   return <></>;
 }

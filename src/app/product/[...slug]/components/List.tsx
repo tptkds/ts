@@ -1,7 +1,7 @@
 'use client';
 import React, { useMemo } from 'react';
 import Image from 'next/image';
-import { Product } from '@/types/globalTypes';
+import { CartItems, Product, Wishlist } from '@/types/globalTypes';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import {
   CATEGIRIES,
@@ -10,14 +10,20 @@ import {
 } from '@/constants/product';
 import CartButton from './CartButton';
 import { useRouter } from 'next/navigation';
+import WishlistButton from './WishlistButton';
 
 export default function List() {
   const router = useRouter();
-  const curCategory = useAppSelector((state) => state.product.category);
-  const cartItems = useAppSelector((state) => state.product.cartItems);
-  let productList: Product[] = useAppSelector(
+  const curCategory: string = useAppSelector((state) => state.product.category);
+  const cartItems: CartItems = useAppSelector(
+    (state) => state.product.cartItems
+  );
+  const wishlist: Wishlist = useAppSelector((state) => state.product.wishlist);
+
+  const productList: Product[] = useAppSelector(
     (state) => state.product.productList
   );
+
   const currentPage: number = useAppSelector(
     (state) => state.product.currentPage
   );
@@ -71,6 +77,7 @@ export default function List() {
                     priority
                   />
                 </div>
+                <WishlistButton item={v} wishlist={wishlist} />
                 <CartButton item={v} cartItems={cartItems} />
               </div>
               <div className="px-8 text-sm mt-6">

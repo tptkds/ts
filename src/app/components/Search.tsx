@@ -12,6 +12,7 @@ function Search() {
   const [searchedDatas, setSearchedData] = useState<Product[]>([]);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const modalBackground = useRef<HTMLDivElement | null>(null);
+  const input = useRef<HTMLInputElement | null>(null);
   const searchData = (text: string) => {
     const datas: Product[] = productList.filter((item) => {
       return item.title.toLowerCase().includes(text.toLowerCase());
@@ -32,8 +33,8 @@ function Search() {
     e.preventDefault();
     if (e.target.parentNode.name === 'searching') {
       modalBackground.current?.classList.remove('hidden');
+      input.current?.focus();
     } else {
-      //modal.current?.classList.add('hidden');
       modalBackground.current?.classList.add('hidden');
     }
   };
@@ -54,19 +55,21 @@ function Search() {
           className="bg-black bg-opacity-30 w-full h-full fixed top-0 left-0 hidden"
           ref={modalBackground}
         >
-          <button
-            name="downModal"
-            className="absolute right-10 top-10 text-xl"
-            onClick={handleClick}
-          >
-            <MdCancel />
-          </button>{' '}
-          <div className="absolute top-10  modal-center bg-white w-1/2 h-80svh overflow-y-auto">
+          <div className="absolute top-10  search-modal-center bg-white w-1/2 h-80svh overflow-y-auto">
+            <button
+              name="downModal"
+              className="absolute right-4 top-4 text-xl"
+              onClick={handleClick}
+            >
+              <MdCancel />
+            </button>
             <input
               type="text"
               value={searchText}
               onChange={handleChange}
+              placeholder="Typing Somthing..."
               className="border-b border-solid border-black focus:outline-none dark:border-white w-full"
+              ref={input}
             />
             <ul className="bg-white dark:bg-black dark:bg-opacity-60 dark:text-white">
               {searchedDatas.map((item) => (

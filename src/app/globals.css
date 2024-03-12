@@ -40,6 +40,14 @@
 .modal-center {
   padding: 2rem;
   background-color: white;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.search-modal-center {
+  padding: 2rem;
+  background-color: white;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -58,12 +66,12 @@
 }
 
 .xs-max-hidden {
-  @media (max-width: 640px) {
+  @media (max-width: 762px) {
     display: none;
   }
 }
 .xs-max-show {
-  @media (max-width: 640px) {
+  @media (max-width: 762px) {
     display: flex;
   }
 }

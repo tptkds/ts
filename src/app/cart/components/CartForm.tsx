@@ -5,12 +5,13 @@ import { CartItems } from '@/types/globalTypes';
 import {
   deleteCartItemsLocalStorage,
   getCartItemsLocalStorage,
+  setCartItemsLocalStorage,
 } from '@/utilities/localstorage';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-
+import { Insvg } from '../Insvg';
 interface CheckBoxes {
   [key: string]: boolean;
 }
@@ -52,7 +53,10 @@ function CartForm() {
     }
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    key: string | null = null
+  ) => {
     e.preventDefault();
     const target = e.target as HTMLButtonElement;
     if (target?.name === 'deleteMany') {
@@ -60,8 +64,31 @@ function CartForm() {
         (key) => checkBoxes[key]
       );
       deleteCartItemsLocalStorage(keys);
-    } else {
+    } else if (target?.name === 'deleteOne') {
       deleteCartItemsLocalStorage([target.id]);
+    } else if (target?.name === 'increment' && key) {
+      const newItem = {
+        [key]: {
+          product: cartItems[key].product,
+          count: cartItems[key].count + 1,
+        },
+      };
+      const newCartItems = { ...cartItems, ...newItem };
+      console.log(cartItems, newCartItems);
+      setCartItemsLocalStorage(newCartItems);
+    } else if (target?.name === 'decrement' && key) {
+      if (cartItems[key].count - 1 < 1) return;
+      const newItem = {
+        [key]: {
+          product: cartItems[key].product,
+          count: cartItems[key].count - 1,
+        },
+      };
+      const newCartItems = { ...cartItems, ...newItem };
+      console.log(cartItems, newCartItems);
+      setCartItemsLocalStorage(newCartItems);
+    } else {
+      return;
     }
     dispatch(setCartItems(getCartItemsLocalStorage()));
   };
@@ -134,13 +161,39 @@ function CartForm() {
                       <p>{cartItems[v].product.price}</p>
                     </div>
                     <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                      <p>{cartItems[v].count}</p>
+                      <button
+                        type="button"
+                        name="decrement"
+                        onClick={(e) => handleClick(e, v)}
+                        className="p-2 "
+                      >
+                        -
+                      </button>
+                      <input
+                        className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-white"
+                        type="text"
+                        value={cartItems[v].count}
+                        data-hs-input-number-input
+                        readOnly
+                      />
+                      <button
+                        type="button"
+                        name="increment"
+                        className="p-2"
+                        onClick={(e) => handleClick(e, v)}
+                      >
+                        +
+                      </button>
                     </div>
                     <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                      <p>{cartItems[v].product.price * cartItems[v].count}</p>
+                      <p>
+                        {(
+                          cartItems[v].product.price * cartItems[v].count
+                        ).toFixed(2)}
+                      </p>
                     </div>
                     <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                      <button id={v} onClick={handleClick}>
+                      <button id={v} name="deleteOne" onClick={handleClick}>
                         delete
                       </button>
                     </div>

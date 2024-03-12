@@ -10,3 +10,7 @@ export interface Product {
 export interface CartItems {
   [productId: string]: { product: Product; count: number };
 }
+
+export interface Wishlist {
+  [productId: string]: Product;
+}

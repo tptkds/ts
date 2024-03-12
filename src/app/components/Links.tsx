@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Search from './Search';
 import DarkModeToggleButton from './DarkModeToggleButton';
 import { CiLogin, CiMenuBurger } from 'react-icons/ci';
-import { PiShoppingBagLight } from 'react-icons/pi';
+import { PiHeartLight, PiShoppingBagLight } from 'react-icons/pi';
 import { CATEGIRIES } from '@/constants/product';
 
 function Links() {
@@ -58,7 +58,10 @@ function Links() {
             <ul className="flex items-end justify-between flex-col bg-white p-4 dark:bg-zinc-900 dark:text-white">
               {CATEGIRIES.map((v) => (
                 <li key={v} className="text-xs p-2">
-                  <Link href={`/product/${v}/1`}>
+                  <Link
+                    href={`/product/${v}/1`}
+                    onClick={() => categoryBox.current?.classList.add('hidden')}
+                  >
                     {v.replace(/\b\w/g, (match) => match.toUpperCase())}
                   </Link>
                 </li>
@@ -68,6 +71,11 @@ function Links() {
           <li className="mr-4">
             <Link href="/cart">
               <PiShoppingBagLight />
+            </Link>
+          </li>
+          <li className="mr-4">
+            <Link href="/cart">
+              <PiHeartLight />
             </Link>
           </li>
           <li className="mr-4">
@@ -82,6 +90,9 @@ function Links() {
         <ul className="flex justify-end items-center xs-max-hidden">
           <li className="mr-4">
             <Search />
+          </li>
+          <li className="mr-4 text-xs">
+            <Link href="/wishlist">WISH</Link>
           </li>
           <li className="mr-4 text-xs">
             <Link href="/">LOG IN</Link>

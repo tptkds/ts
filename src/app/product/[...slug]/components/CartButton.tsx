@@ -8,7 +8,7 @@ import {
   addCartItemsLocalStorage,
   deleteCartItemsLocalStorage,
 } from '@/utilities/localstorage';
-import { PiShoppingBagFill, PiShoppingBagLight } from 'react-icons/pi';
+import { PiHeart, PiShoppingBagFill, PiShoppingBagLight } from 'react-icons/pi';
 
 function CartButton({
   item,
