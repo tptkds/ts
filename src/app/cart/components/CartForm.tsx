@@ -7,6 +7,7 @@ import {
   getCartItemsLocalStorage,
 } from '@/utilities/localstorage';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -16,6 +17,7 @@ interface CheckBoxes {
 
 function CartForm() {
   const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false);
   const [checkBoxes, setCheckBoxes] = useState<CheckBoxes>({});
   const [checkAllBox, setCheckAllBox] = useState<boolean>(false);
   const cartItems: CartItems = useAppSelector(
@@ -63,12 +65,17 @@ function CartForm() {
     }
     dispatch(setCartItems(getCartItemsLocalStorage()));
   };
-  if (!cartItems) return;
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+  if (!isLoaded) return;
+
   return (
     <div>
       <form action="">
         <ul>
-          <li className="my-4 flex">
+          <li className="my-4 flex text-sm sm-max-textsize-12">
             <input
               type="checkbox"
               className="mr-4"
@@ -76,35 +83,36 @@ function CartForm() {
               name="all"
               checked={checkAllBox}
             />
-            <div className="lg:w-1/12 md:w-2/6 sm:w-2/12  w-3/12 py-8 mx-4 flex items-center">
-              <p className="whitespace-pre-line=true">PRODUCT</p>
+            <div className="w-2/12 py-8 mx-4 flex items-center">
+              <p className="whitespace-pre-line=true">Product</p>
             </div>
             <div className="w-full flex items-center">
-              <p className="w-2/5 mr-8"></p>
-              <p className="grow w-1/5 whitespace-pre-line=true flex justify-end">
-                PRICE
+              <p className="w-1/5 whitespace-pre-line=true flex items-center md:w-1/4"></p>
+              <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                Price
               </p>
-              <p className="grow w-1/5 whitespace-pre-line=true flex justify-end">
-                QUANTITY
+              <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                Amount
               </p>
-              <p className="grow w-1/5 whitespace-pre-line=true flex justify-end">
-                TOTAL
+              <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                Total
               </p>
-              <p className="mr-8 w-12"></p>
+              <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4"></p>
             </div>
           </li>
-          {cartItemKeys.length !== 0
-            ? cartItemKeys.map((v) => {
-                return (
-                  <li key={v} className="my-4 flex items-center">
-                    <input
-                      name={v}
-                      type="checkbox"
-                      className="mr-4"
-                      onChange={handleChange}
-                      checked={checkBoxes[v] || false}
-                    />
-                    <div className="relative lg:w-1/12 md:w-2/6 sm:w-2/12  h-24 w-3/12 mx-4">
+          {cartItemKeys.length !== 0 ? (
+            cartItemKeys.map((v) => {
+              return (
+                <li key={v} className="my-4 flex items-center">
+                  <input
+                    name={v}
+                    type="checkbox"
+                    className="mr-4"
+                    onChange={handleChange}
+                    checked={checkBoxes[v] || false}
+                  />
+                  <div className="relative h-24 w-2/12 mx-4 bg-white">
+                    <Link href={`/product/detail/${cartItems[v].product.id}`}>
                       <Image
                         src={cartItems[v].product.image}
                         alt={cartItems[v].product.title}
@@ -114,30 +122,35 @@ function CartForm() {
                           objectFit: 'contain',
                         }}
                       />
+                    </Link>
+                  </div>
+                  <div className="w-full flex text-sm sm-max-textsize-12">
+                    <div className="w-1/5 whitespace-pre-line=true flex items-center md:w-1/4">
+                      <Link href={`/product/detail/${cartItems[v].product.id}`}>
+                        {cartItems[v].product.title}
+                      </Link>
                     </div>
-                    <div className="w-full flex ">
-                      <div className=" w-2/5 whitespace-pre-line=true flex items-center mr-8">
-                        <p>{cartItems[v].product.title}</p>
-                      </div>
-                      <div className="grow w-1/5 whitespace-pre-line=true  flex justify-end flex items-center">
-                        <p>{cartItems[v].product.price}</p>
-                      </div>
-                      <div className="grow w-1/5 whitespace-pre-line=true  flex justify-end flex items-center">
-                        <p>{cartItems[v].count}</p>
-                      </div>
-                      <div className="grow w-1/5 whitespace-pre-line=true  flex justify-end flex items-center">
-                        <p>{cartItems[v].product.price * cartItems[v].count}</p>
-                      </div>
+                    <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                      <p>{cartItems[v].product.price}</p>
                     </div>
-                    <div className="flex ml-8 w-12">
+                    <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                      <p>{cartItems[v].count}</p>
+                    </div>
+                    <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                      <p>{cartItems[v].product.price * cartItems[v].count}</p>
+                    </div>
+                    <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
                       <button id={v} onClick={handleClick}>
                         delete
                       </button>
                     </div>
-                  </li>
-                );
-              })
-            : 'EMPTY'}
+                  </div>
+                </li>
+              );
+            })
+          ) : (
+            <p className="text-center text-xs p-14 ">장바구니가 비어있어요.</p>
+          )}
           <li>
             <button name="deleteMany" onClick={handleClick}>
               delete

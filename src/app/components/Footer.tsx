@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className=" relative bg-white bg-opacity-60  flex flex-col items-center py-6  shadow-md dark:bg-zinc-900 dark:text-white">
+    <footer className="  pt-14 relative bg-white bg-opacity-60  flex flex-col items-center py-6  shadow-md dark:bg-zinc-900 dark:text-white">
       <ul className="flex text-lg mb-4">
         <li className="mr-4">
           <FaGithub />

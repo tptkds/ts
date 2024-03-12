@@ -44,3 +44,42 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.sm-max-hidden {
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
+
+.sm-max-basis {
+  @media (max-width: 640px) {
+    flex-basis: 66.666666%;
+  }
+}
+
+.xs-max-hidden {
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
+.xs-max-show {
+  @media (max-width: 640px) {
+    display: flex;
+  }
+}
+
+.min-w-220 {
+  min-width: 220px;
+}
+
+.sm-max-textsize-12 {
+  @media (max-width: 640px) {
+    font-size: 12px;
+  }
+}
+
+.w800-max-padding {
+  @media (max-width: 800px) {
+    padding: 3rem 1rem 0rem 1rem;
+  }
+}

@@ -57,7 +57,7 @@ export default function Pagenation() {
   };
 
   return (
-    <ul className="flex justify-center items-center	mb-8">
+    <ul className="flex justify-center items-center">
       <li className="p-2.5">
         <button name="newer" onClick={handleClick} disabled={currentPage === 1}>
           NEWER

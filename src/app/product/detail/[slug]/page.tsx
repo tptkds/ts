@@ -23,8 +23,8 @@ export default function Detail({ params }: { params: { slug: number } }) {
     return;
   }
   return (
-    <div className="h-80svh flex p-20 justify-center">
-      <div className="  w-3/6 h-full flex justify-center items-start">
+    <div className="h-full flex p-20 justify-center w800-max-padding text-sm sm-max-textsize-12 ">
+      <div className="  w-3/6 flex justify-center items-start h-80svh">
         <div className="relative w-4/6 h-4/6">
           <Image
             src={curItem?.image}
@@ -36,11 +36,11 @@ export default function Detail({ params }: { params: { slug: number } }) {
           />
         </div>
       </div>
-      <div className="w-3/6">
+      <div className="w-3/6 h-full text-sm sm-max-textsize-12">
         <p>{curItem.title}</p>
         <p className="py-2.5">{curItem.description}</p>
-        <p>{curItem.price}</p>
-        <div className="flex flex-col">
+        <p>${curItem.price}</p>
+        <div className="flex flex-col mt-16">
           <button>BUY NOW</button>
           <AddCartButton item={curItem} />
         </div>

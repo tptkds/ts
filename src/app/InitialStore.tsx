@@ -15,7 +15,9 @@ export default function InitialStore() {
       dispatch(setProductList(productList));
     };
     fetchData();
-    dispatch(setCartItems(getCartItemsLocalStorage()));
+    const cartItems = getCartItemsLocalStorage();
+
+    dispatch(setCartItems(cartItems));
   }, [dispatch]);
   return <></>;
 }
