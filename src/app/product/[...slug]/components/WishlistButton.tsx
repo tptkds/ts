@@ -26,6 +26,7 @@ export default function WishlistButton({
     if ([...keysInCWishlist].includes(item.id.toString()))
       deleteWishlistLocalStorage([item.id.toString()]);
     else addWishlistLocalStorage(item);
+
     const newWishlist: Wishlist | undefined = getWishlistLocalStorage();
     if (newWishlist !== undefined) dispatch(setWishlist(newWishlist));
     else dispatch(setWishlist({}));
