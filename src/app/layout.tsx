@@ -1,10 +1,7 @@
 import type { Metadata } from 'next';
 import StoreProvider from './StoreProvider';
 import ThemeProvider from './ThemeProvider';
-import Nav from './components/Nav';
 import './globals.css';
-import Notice from './components/Notice';
-import InitialStore from './InitialStore';
 import Footer from './components/Footer';
 import { Inter, Josefin_Sans, Noto_Sans } from 'next/font/google';
 import DataInitializer from './InitialStore';
