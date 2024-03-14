@@ -1,17 +1,17 @@
 import Image from 'next/image';
-import ImageSlider from './components/ImageSlider';
 
 export default function Home() {
   return (
-    <>
+    <div className="absolute top-0 left-0 h-svh w-full">
       <Image
         src="/backgrounds/home-bg.jpg"
-        alt="메인 배경 이미지"
+        alt="garage"
         fill
         sizes="100vw"
+        style={{
+          objectFit: 'cover',
+        }}
       />
-
-      <ImageSlider />
-    </>
+    </div>
   );
 }
