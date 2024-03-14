@@ -1,5 +1,10 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from 'firebase/auth';
+import { auth } from '../firebaseConfigure';
 
 export const createUserOnFireBase = async (
   email: FormDataEntryValue,
@@ -15,3 +20,20 @@ export const createUserOnFireBase = async (
 
   return res;
 };
+
+export const getUserOnFireBase = async (
+  email: FormDataEntryValue,
+  password: FormDataEntryValue
+) => {
+  signInWithEmailAndPassword(auth, email.toString(), password.toString())
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+};
+
+export const checkAuthStateChanged = () => {};

@@ -79,7 +79,7 @@ function Links() {
             </Link>
           </li>
           <li className="mr-4">
-            <Link href="/">
+            <Link href="/account/login">
               <CiLogin />
             </Link>
           </li>
@@ -95,7 +95,7 @@ function Links() {
             <Link href="/wishlist">WISH</Link>
           </li>
           <li className="mr-4 text-xs">
-            <Link href="/">LOG IN</Link>
+            <Link href="/account/login">LOG IN</Link>
           </li>
           <li className="mr-12 text-xs">
             <Link href="/cart">CART</Link>

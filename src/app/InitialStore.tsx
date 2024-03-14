@@ -14,9 +14,8 @@ import {
 import { AppDispatch } from '@/types/reduxTypes';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 
-export default function InitialStore() {
+export default function DataInitializer() {
   const dispatch: AppDispatch = useAppDispatch();
-
   useEffect(() => {
     const fetchData = async () => {
       const productList: Product[] = await getProductList();
@@ -30,5 +29,18 @@ export default function InitialStore() {
     const wishlist: Wishlist = getWishlistLocalStorage();
     dispatch(setWishlist(wishlist));
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       // User is signed in, see docs for a list of available properties
+  //       // https://firebase.google.com/docs/reference/js/auth.user
+  //       console.log(user);
+  //       // ...
+  //     } else {
+  //       console.log(user);
+  //     }
+  //   });
+  // }, []);
   return <></>;
 }

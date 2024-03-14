@@ -7,6 +7,8 @@ import Notice from './components/Notice';
 import InitialStore from './InitialStore';
 import Footer from './components/Footer';
 import { Inter, Josefin_Sans, Noto_Sans } from 'next/font/google';
+import DataInitializer from './InitialStore';
+import Header from './components/Header';
 
 const josefinSans = Josefin_Sans({
   subsets: ['latin'],
@@ -35,13 +37,10 @@ export default function RootLayout({
       >
         <StoreProvider>
           <ThemeProvider attribute="class">
-            <InitialStore />
+            <DataInitializer />
             <div className="relative h-dvh dark:bg-zinc-900 dark:text-white">
               <div className="min-h-full dark:bg-zinc-900 dark:text-white">
-                <header className=" relative z-10">
-                  <Notice />
-                  <Nav />
-                </header>
+                <Header />
                 <main className="py-0 p-12 z-0">{children}</main>
               </div>
               <Footer />
