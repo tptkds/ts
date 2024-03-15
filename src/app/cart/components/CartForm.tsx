@@ -99,119 +99,128 @@ function CartForm() {
   if (!isLoaded) return;
 
   return (
-    <div>
-      <form action="">
-        <ul>
-          <li className="my-4 flex text-sm sm-max-textsize-12">
-            <input
-              type="checkbox"
-              className="mr-4"
-              onChange={handleChange}
-              name="all"
-              checked={checkAllBox}
-            />
-            <div className="w-2/12 py-8 mx-4 flex items-center">
-              <p className="whitespace-pre-line=true">Product</p>
-            </div>
-            <div className="w-full flex items-center">
-              <p className="w-1/5 whitespace-pre-line=true flex items-center md:w-1/4"></p>
-              <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                Price
-              </p>
-              <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                Amount
-              </p>
-              <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                Total
-              </p>
-              <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4"></p>
-            </div>
-          </li>
-          {cartItemKeys.length !== 0 ? (
-            cartItemKeys.map((v) => {
-              return (
-                <li key={v} className="my-4 flex items-center">
-                  <input
-                    name={v}
-                    type="checkbox"
-                    className="mr-4"
-                    onChange={handleChange}
-                    checked={checkBoxes[v] || false}
-                  />
-                  <div className="relative h-24 w-2/12 mx-4 bg-white">
-                    <Link href={`/product/detail/${cartItems[v].product.id}`}>
-                      <Image
-                        src={cartItems[v].product.image}
-                        alt={cartItems[v].product.title}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        fill
-                        style={{
-                          objectFit: 'contain',
-                        }}
-                      />
-                    </Link>
-                  </div>
-                  <div className="w-full flex text-sm sm-max-textsize-12">
-                    <div className="w-1/5 whitespace-pre-line=true flex items-center md:w-1/4">
+    <>
+      <div className="mt-14 flex flex-col justify-center w-full items-center">
+        <h2>Cart</h2>
+      </div>
+      <div>
+        <form action="">
+          <ul>
+            <li className="my-4 flex text-sm sm-max-textsize-12">
+              <input
+                type="checkbox"
+                className="mr-4"
+                onChange={handleChange}
+                name="all"
+                checked={checkAllBox}
+              />
+              <div className="w-2/12 py-8 mx-4 flex items-center">
+                <p className="whitespace-pre-line=true">Product</p>
+              </div>
+              <div className="w-full flex items-center">
+                <p className="w-1/5 whitespace-pre-line=true flex items-center md:w-1/4"></p>
+                <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                  Price
+                </p>
+                <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                  Amount
+                </p>
+                <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                  Total
+                </p>
+                <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4"></p>
+              </div>
+            </li>
+            {cartItemKeys.length !== 0 ? (
+              cartItemKeys.map((v) => {
+                return (
+                  <li key={v} className="my-4 flex items-center">
+                    <input
+                      name={v}
+                      type="checkbox"
+                      className="mr-4"
+                      onChange={handleChange}
+                      checked={checkBoxes[v] || false}
+                    />
+                    <div className="relative h-24 w-2/12 mx-4 bg-white">
                       <Link href={`/product/detail/${cartItems[v].product.id}`}>
-                        {cartItems[v].product.title}
+                        <Image
+                          src={cartItems[v].product.image}
+                          alt={cartItems[v].product.title}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          fill
+                          style={{
+                            objectFit: 'contain',
+                          }}
+                        />
                       </Link>
                     </div>
-                    <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                      <p>{cartItems[v].product.price}</p>
+                    <div className="w-full flex text-sm sm-max-textsize-12">
+                      <div className="w-1/5 whitespace-pre-line=true flex items-center md:w-1/4">
+                        <Link
+                          href={`/product/detail/${cartItems[v].product.id}`}
+                        >
+                          {cartItems[v].product.title}
+                        </Link>
+                      </div>
+                      <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                        <p>{cartItems[v].product.price}</p>
+                      </div>
+                      <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                        <button
+                          type="button"
+                          name="decrement"
+                          onClick={(e) => handleClick(e, v)}
+                          className="p-2 "
+                        >
+                          -
+                        </button>
+                        <input
+                          className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-white"
+                          type="text"
+                          value={cartItems[v].count}
+                          data-hs-input-number-input
+                          readOnly
+                        />
+                        <button
+                          type="button"
+                          name="increment"
+                          className="p-2"
+                          onClick={(e) => handleClick(e, v)}
+                        >
+                          +
+                        </button>
+                      </div>
+                      <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                        <p>
+                          {(
+                            cartItems[v].product.price * cartItems[v].count
+                          ).toFixed(2)}
+                        </p>
+                      </div>
+                      <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
+                        <button id={v} name="deleteOne" onClick={handleClick}>
+                          delete
+                        </button>
+                      </div>
                     </div>
-                    <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                      <button
-                        type="button"
-                        name="decrement"
-                        onClick={(e) => handleClick(e, v)}
-                        className="p-2 "
-                      >
-                        -
-                      </button>
-                      <input
-                        className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-white"
-                        type="text"
-                        value={cartItems[v].count}
-                        data-hs-input-number-input
-                        readOnly
-                      />
-                      <button
-                        type="button"
-                        name="increment"
-                        className="p-2"
-                        onClick={(e) => handleClick(e, v)}
-                      >
-                        +
-                      </button>
-                    </div>
-                    <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                      <p>
-                        {(
-                          cartItems[v].product.price * cartItems[v].count
-                        ).toFixed(2)}
-                      </p>
-                    </div>
-                    <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                      <button id={v} name="deleteOne" onClick={handleClick}>
-                        delete
-                      </button>
-                    </div>
-                  </div>
-                </li>
-              );
-            })
-          ) : (
-            <p className="text-center text-xs p-14 ">장바구니가 비어있어요.</p>
-          )}
-          <li>
-            <button name="deleteMany" onClick={handleClick}>
-              delete
-            </button>
-          </li>
-        </ul>
-      </form>
-    </div>
+                  </li>
+                );
+              })
+            ) : (
+              <p className="text-center text-xs p-14 ">
+                There are no items in your cart
+              </p>
+            )}
+            <li>
+              <button name="deleteMany" onClick={handleClick}>
+                delete
+              </button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </>
   );
 }
 

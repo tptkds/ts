@@ -13,9 +13,13 @@ import {
 } from '@/utilities/localstorage';
 import { AppDispatch } from '@/types/reduxTypes';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebaseConfigure';
+import { setUserInfo } from '@/slices/userSlice';
 
 export default function DataInitializer() {
   const dispatch: AppDispatch = useAppDispatch();
+
   useEffect(() => {
     const fetchData = async () => {
       const productList: Product[] = await getProductList();
@@ -28,19 +32,14 @@ export default function DataInitializer() {
 
     const wishlist: Wishlist = getWishlistLocalStorage();
     dispatch(setWishlist(wishlist));
-  }, [dispatch]);
+  }, []);
 
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       // User is signed in, see docs for a list of available properties
-  //       // https://firebase.google.com/docs/reference/js/auth.user
-  //       console.log(user);
-  //       // ...
-  //     } else {
-  //       console.log(user);
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(setUserInfo(user));
+      }
+    });
+  }, []);
   return <></>;
 }

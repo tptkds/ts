@@ -4,7 +4,7 @@ import ThemeProvider from './ThemeProvider';
 import './globals.css';
 import Footer from './components/Footer';
 import { Inter, Josefin_Sans, Noto_Sans } from 'next/font/google';
-import DataInitializer from './InitialStore';
+import DataInitializer from './DataInitializer';
 import Header from './components/Header';
 
 const josefinSans = Josefin_Sans({

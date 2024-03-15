@@ -4,8 +4,8 @@ import { auth } from '@/app/firebaseConfigure';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { AppDispatch } from '@/types/reduxTypes';
-import { setUserInfo, setUserLogIn } from '@/slices/userSlice';
 import { useRouter } from 'next/navigation';
+import { setUserInfo } from '@/slices/userSlice';
 
 function Form() {
   const [email, setEmail] = useState<string>('');
@@ -30,7 +30,6 @@ function Form() {
       await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          dispatch(setUserLogIn());
           dispatch(setUserInfo(user));
           router.push('/');
         })
@@ -68,7 +67,7 @@ function Form() {
 
   return (
     <>
-      <div className="text-red-600 text-sm mb-4">{error}</div>{' '}
+      <div className="text-red-600 text-sm mb-4">{error}</div>
       <form onSubmit={singIn} className="flex flex-col items-center w-full">
         <div className="flex flex-col items-center w-full">
           <input
@@ -94,7 +93,7 @@ function Form() {
           <button
             type="submit"
             disabled={isSignIng}
-            className="h-12 text-sm bg-zinc-900 hover:bg-zinc-600 text-white transition duration-200 ease-in-out  w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3"
+            className="h-12 text-sm bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out  w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3"
           >
             Sign In
           </button>

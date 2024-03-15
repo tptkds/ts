@@ -50,55 +50,63 @@ export default function WishlistComponent() {
   };
 
   return (
-    <ul className="flex flex-wrap justify-center w-full p-2">
-      {keysOfWishlist.length !== 0 ? (
-        keysOfWishlist.map((key) => {
-          return (
-            <li
-              className="card bg-base-100 shadow-xl m-8 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 min-w-40"
-              key={key}
-            >
-              <div className="w-full h-40 relative">
-                <Link href={`/product/${key}`}>
-                  <Image
-                    src={wishlist[key].image}
-                    alt={wishlist[key].title}
-                    fill
-                    style={{
-                      objectFit: 'contain',
-                    }}
-                  />
-                </Link>
-              </div>
-              <div className="card-body">
-                <Link href={`/product/${key}`}>
-                  <h2 className="text-sm max-h-24 truncate title">
-                    {wishlist[key].title}
-                  </h2>
+    <>
+      <div className="mt-14 flex flex-col justify-center w-full items-center">
+        <h2>Wish List</h2>
+      </div>
 
-                  <p className="text-xs  max-h-24 truncate">
-                    {wishlist[key].description}
-                  </p>
-                </Link>
-                <div className="card-actions justify-end">
-                  <button name="heart" onClick={(e) => handleClick(e, key)}>
-                    <PiHeartFill style={{ fontSize: '28px' }} />
-                  </button>
-                  <button name="cart" onClick={(e) => handleClick(e, key)}>
-                    {cartItems[key] ? (
-                      <PiShoppingBagFill style={{ fontSize: '28px' }} />
-                    ) : (
-                      <PiShoppingBagLight style={{ fontSize: '28px' }} />
-                    )}
-                  </button>
+      <ul className="flex flex-wrap justify-center w-full p-2">
+        {keysOfWishlist.length !== 0 ? (
+          keysOfWishlist.map((key) => {
+            return (
+              <li
+                className="card bg-base-100 shadow-xl m-8 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 min-w-40"
+                key={key}
+              >
+                <div className="w-full h-40 relative">
+                  <Link href={`/product/${key}`}>
+                    <Image
+                      src={wishlist[key].image}
+                      alt={wishlist[key].title}
+                      fill
+                      style={{
+                        objectFit: 'contain',
+                      }}
+                    />
+                  </Link>
                 </div>
-              </div>
-            </li>
-          );
-        })
-      ) : (
-        <p>위시리스트가 비어있습니다.</p>
-      )}
-    </ul>
+                <div className="card-body">
+                  <Link href={`/product/${key}`}>
+                    <h2 className="text-sm max-h-24 truncate title">
+                      {wishlist[key].title}
+                    </h2>
+
+                    <p className="text-xs  max-h-24 truncate">
+                      {wishlist[key].description}
+                    </p>
+                  </Link>
+                  <div className="card-actions justify-end">
+                    <button name="heart" onClick={(e) => handleClick(e, key)}>
+                      <PiHeartFill style={{ fontSize: '28px' }} />
+                    </button>
+                    <button name="cart" onClick={(e) => handleClick(e, key)}>
+                      {cartItems[key] ? (
+                        <PiShoppingBagFill style={{ fontSize: '28px' }} />
+                      ) : (
+                        <PiShoppingBagLight style={{ fontSize: '28px' }} />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </li>
+            );
+          })
+        ) : (
+          <p className="text-center text-xs p-14 ">
+            There are no favorite items
+          </p>
+        )}
+      </ul>
+    </>
   );
 }

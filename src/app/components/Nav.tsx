@@ -4,10 +4,12 @@ import React, { useRef } from 'react';
 import DarkModeToggleButton from './DarkModeToggleButton';
 import { CATEGIRIES } from '@/constants/product';
 import Search from './Search';
-import { CiLogin, CiMenuBurger } from 'react-icons/ci';
+import { CiMenuBurger } from 'react-icons/ci';
 import { PiHeartLight, PiShoppingBagLight } from 'react-icons/pi';
 
-export default function Nav2() {
+import User from './User';
+
+export default function Nav() {
   const menu = useRef<HTMLUListElement>(null);
   const toggleMenu = () => {
     if (menu.current?.classList.contains('hidden')) {
@@ -52,15 +54,12 @@ export default function Nav2() {
           <Search />
         </div>
         <div className="mr-2 md:mr-4">
-          <Link href="/wishlist">
-            <PiHeartLight className="text-lg md:hidden" />
-            <p className="hidden md:block">WishList</p>
-          </Link>
+          <User />
         </div>
         <div className="mr-2 md:mr-4">
-          <Link href="/account/login">
-            <CiLogin className="text-lg md:hidden" />
-            <p className="hidden md:block">Login</p>
+          <Link href="/wishlist">
+            <PiHeartLight className="text-lg md:hidden" />
+            <p className="hidden md:block">Wish List</p>
           </Link>
         </div>
         <div className="mr-8">

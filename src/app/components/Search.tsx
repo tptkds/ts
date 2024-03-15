@@ -4,6 +4,7 @@ import { Product } from '@/types/globalTypes';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import { IoIosSearch } from 'react-icons/io';
+import { IoCloseSharp } from 'react-icons/io5';
 import { MdCancel, MdOutlineCancel } from 'react-icons/md';
 
 function Search() {
@@ -61,7 +62,7 @@ function Search() {
               className="absolute right-4 top-4 text-xl"
               onClick={handleClick}
             >
-              <MdCancel />
+              <IoCloseSharp />
             </button>
             <input
               type="text"

@@ -1,13 +1,14 @@
 'use client';
 import React, { useState } from 'react';
 import { auth } from '@/app/firebaseConfigure';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { AppDispatch } from '@/types/reduxTypes';
-import { setUserInfo, setUserLogIn } from '@/slices/userSlice';
+import { setUserInfo } from '@/slices/userSlice';
 import { useRouter } from 'next/navigation';
 
 function Form() {
+  const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isRegistering, setIsRegstering] = useState<boolean>(false);
@@ -19,8 +20,13 @@ function Form() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsRegstering(true);
-    if (email === '' || password === '') {
-      setError('이메일과 패스워드 모두 입력해 주세요.');
+    if (email === '' || password === '' || name === '') {
+      setError('이메일과 패스워드 그리고 이름 모두 입력해 주세요.');
+      setIsRegstering(false);
+      return;
+    }
+    if (name.length > 6) {
+      setError('이름은 6글자 이하로 입력해 주세요');
       setIsRegstering(false);
       return;
     }
@@ -30,7 +36,9 @@ function Form() {
       await createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          dispatch(setUserLogIn());
+          updateProfile(user, {
+            displayName: name,
+          });
           dispatch(setUserInfo(user));
           router.push('/');
         })
@@ -74,6 +82,15 @@ function Form() {
       >
         <div className="flex flex-col items-center w-full">
           <input
+            name="name"
+            type="name"
+            value={name}
+            placeholder="Name(6글자 이하)"
+            autoComplete="username"
+            onChange={(e) => setName(e.target.value)}
+            className="px-4  text-sm h-14 bg-gray-50 border-gray-200 border mb-6 outline-none w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3 "
+          />
+          <input
             name="email"
             type="email"
             value={email}
@@ -86,7 +103,7 @@ function Form() {
             name="password"
             type="password"
             value={password}
-            placeholder="Password"
+            placeholder="Password (6글자 이상)"
             autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
             className="px-4 text-sm h-14 bg-gray-50 border-gray-200 border outline-none w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3 "
@@ -95,7 +112,7 @@ function Form() {
         <div className="flex flex-col items-center w-full my-8">
           <button
             type="submit"
-            className="h-12 text-sm bg-zinc-900 hover:bg-zinc-600 text-white transition duration-200 ease-in-out  w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3"
+            className="h-12 text-sm bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out  w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3"
             disabled={isRegistering}
           >
             {isRegistering ? 'Creating...' : 'Create'}
