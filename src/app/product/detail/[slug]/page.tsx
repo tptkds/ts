@@ -5,6 +5,7 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 import { Product } from '@/types/globalTypes';
 
 import AddCartButton from './components/AddCartButton';
+import { scrollToTop } from '@/utilities/app';
 
 export default function Detail({ params }: { params: { slug: number } }) {
   const [curItem, setCurItem] = useState<Product>();
@@ -23,7 +24,10 @@ export default function Detail({ params }: { params: { slug: number } }) {
     return;
   }
   return (
-    <div className="h-full flex p-20 justify-center w800-max-padding text-sm sm-max-textsize-12 ">
+    <div
+      className="h-full flex p-20 justify-center w800-max-padding text-sm sm-max-textsize-12"
+      onLoad={() => scrollToTop()}
+    >
       <div className="  w-3/6 flex justify-center items-start h-80svh">
         <div className="relative w-4/6 h-4/6">
           <Image

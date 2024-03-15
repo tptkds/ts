@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { setCurrentPage, setCategory } from '@/slices/productSlict';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
@@ -22,7 +22,11 @@ export default function Product({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <div className="flex flex-col mb-44 px-4 sm:px-12">
+      <div className="mt-14 flex flex-col justify-center w-full items-center">
+        <h2>{curCategory.charAt(0).toUpperCase() + curCategory.slice(1)}</h2>
+      </div>
+
+      <div className="flex flex-col mb-44">
         <List />
       </div>
       <div className="my-14">

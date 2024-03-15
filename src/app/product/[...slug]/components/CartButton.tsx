@@ -11,10 +11,10 @@ import {
 import { PiHeart, PiShoppingBagFill, PiShoppingBagLight } from 'react-icons/pi';
 
 function CartButton({
-  item,
+  product,
   cartItems,
 }: {
-  item: Product;
+  product: Product;
   cartItems: CartItems;
 }) {
   const dispatch = useAppDispatch();
@@ -23,9 +23,9 @@ function CartButton({
   const handleClick = (e) => {
     e.stopPropagation();
 
-    if ([...keysInCart].includes(item.id.toString()))
-      deleteCartItemsLocalStorage([item.id.toString()]);
-    else addCartItemsLocalStorage(item);
+    if ([...keysInCart].includes(product.id.toString()))
+      deleteCartItemsLocalStorage([product.id.toString()]);
+    else addCartItemsLocalStorage(product);
     const newCartItems: CartItems | undefined = getCartItemsLocalStorage();
     if (newCartItems !== undefined) dispatch(setCartItems(newCartItems));
     else dispatch(setCartItems({}));
@@ -33,7 +33,7 @@ function CartButton({
 
   return (
     <button type="button" onClick={handleClick}>
-      {cartItems[item.id] ? (
+      {cartItems[product.id] ? (
         <PiShoppingBagFill style={{ fontSize: '28px' }} />
       ) : (
         <PiShoppingBagLight style={{ fontSize: '28px' }} />

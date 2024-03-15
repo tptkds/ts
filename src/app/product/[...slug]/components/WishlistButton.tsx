@@ -11,10 +11,10 @@ import { PiHeart, PiHeartFill, PiHeartLight } from 'react-icons/pi';
 import { setWishlist } from '@/slices/productSlict';
 
 export default function WishlistButton({
-  item,
+  product,
   wishlist,
 }: {
-  item: Product;
+  product: Product;
   wishlist: Wishlist;
 }) {
   const dispatch = useAppDispatch();
@@ -23,9 +23,9 @@ export default function WishlistButton({
   const handleClick = (e) => {
     e.stopPropagation();
 
-    if ([...keysInCWishlist].includes(item.id.toString()))
-      deleteWishlistLocalStorage([item.id.toString()]);
-    else addWishlistLocalStorage(item);
+    if ([...keysInCWishlist].includes(product.id.toString()))
+      deleteWishlistLocalStorage([product.id.toString()]);
+    else addWishlistLocalStorage(product);
 
     const newWishlist: Wishlist | undefined = getWishlistLocalStorage();
     if (newWishlist !== undefined) dispatch(setWishlist(newWishlist));
@@ -34,7 +34,7 @@ export default function WishlistButton({
 
   return (
     <button type="button" onClick={handleClick}>
-      {wishlist[item.id] ? (
+      {wishlist[product.id] ? (
         <PiHeartFill style={{ fontSize: '28px' }} />
       ) : (
         <PiHeartLight style={{ fontSize: '28px' }} />
