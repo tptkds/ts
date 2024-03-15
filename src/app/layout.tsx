@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <body
         className={
-          notoSans.className + ' overflow-x-hidden select-none h-dvh relative'
+          notoSans.className + ' overflow-x-hidden select-none h-dvh relative '
         }
       >
         <StoreProvider>
@@ -38,7 +38,7 @@ export default function RootLayout({
             <div className="relative h-dvh dark:bg-zinc-900 dark:text-white">
               <div className="min-h-full dark:bg-zinc-900 dark:text-white">
                 <Header />
-                <main className="py-0 p-12 z-0">{children}</main>
+                <main className="z-0">{children}</main>
               </div>
               <Footer />
             </div>

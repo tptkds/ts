@@ -32,15 +32,13 @@ function CartButton({
   };
 
   return (
-    <div className="absolute bottom-0 right-10" onClick={handleClick}>
-      <button>
-        {cartItems[item.id] ? (
-          <PiShoppingBagFill style={{ fontSize: '28px' }} />
-        ) : (
-          <PiShoppingBagLight style={{ fontSize: '28px' }} />
-        )}
-      </button>
-    </div>
+    <button type="button" onClick={handleClick}>
+      {cartItems[item.id] ? (
+        <PiShoppingBagFill style={{ fontSize: '28px' }} />
+      ) : (
+        <PiShoppingBagLight style={{ fontSize: '28px' }} />
+      )}
+    </button>
   );
 }
 

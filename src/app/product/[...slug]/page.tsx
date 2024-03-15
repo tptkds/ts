@@ -1,11 +1,11 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import List from './components/List';
 import { setCurrentPage, setCategory } from '@/slices/productSlict';
-import Pagenation from './components/Pagenation';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { AppDispatch } from '@/types/reduxTypes';
+import List from './components/List';
+import Pagenation from './components/Pagenation';
 
 export default function Product({ params }: { params: { slug: string } }) {
   const dispatch: AppDispatch = useAppDispatch();
@@ -22,8 +22,12 @@ export default function Product({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <List />
-      <Pagenation />
+      <div className="flex flex-col mb-44 px-4 sm:px-12">
+        <List />
+      </div>
+      <div className="my-14">
+        <Pagenation />
+      </div>
     </>
   );
 }

@@ -52,47 +52,40 @@ export default function List() {
   const handleClick = (id: number) => {
     router.push(`/product/detail/${id}`);
   };
-
+  /**/
   return (
-    <div className="h-full">
-      <ul className="flex flex-wrap h-full">
-        {curProducts.map((v, i) => {
+    <>
+      <ul className="grid grid-cols-1 gap-8 h-full sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {curProducts.map((product, i) => {
           return (
-            <li
-              key={v.id}
-              className="flex-col flex flex-wrap lg:w-1/3 md:w-1/2 sm:w-full h-80svh p-4"
-            >
-              <div
-                className=" relative w-full h-4/6 justify-center flex cursor-pointer "
-                onClick={() => handleClick(v.id)}
-              >
-                <div className=" relative w-full h-5/6 bg-white min-w-52 max-w-64">
-                  <Image
-                    src={v.image}
-                    alt={v.title}
-                    fill
-                    style={{
-                      objectFit: 'contain',
-                    }}
-                    priority
-                  />
-                </div>
-                <WishlistButton item={v} wishlist={wishlist} />
-                <CartButton item={v} cartItems={cartItems} />
+            <li key={product.id} className="h-full">
+              <div className="flex items-center w-full h-full ">
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{ width: '100%', height: 'auto', padding: '20%' }}
+                />
               </div>
-              <div className="px-8 text-sm mt-6">
-                <p
-                  className="cursor-pointer mb-2"
-                  onClick={() => handleClick(v.id)}
-                >
-                  {v.title.toUpperCase()}
-                </p>
-                <p>${v.price.toLocaleString()}</p>
+
+              <div>
+                <p>{product.title}</p>
+                <p>${product.price}</p>
+              </div>
+              <div className="flex">
+                <div className="mr-2">
+                  <WishlistButton item={product} wishlist={wishlist} />
+                </div>
+                <div>
+                  <CartButton item={product} cartItems={cartItems} />
+                </div>
               </div>
             </li>
           );
         })}
       </ul>
-    </div>
+    </>
   );
 }

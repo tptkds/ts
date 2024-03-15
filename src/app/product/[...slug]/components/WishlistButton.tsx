@@ -33,14 +33,12 @@ export default function WishlistButton({
   };
 
   return (
-    <div className="absolute bottom-0 right-16 mr-4" onClick={handleClick}>
-      <button>
-        {wishlist[item.id] ? (
-          <PiHeartFill style={{ fontSize: '28px' }} />
-        ) : (
-          <PiHeartLight style={{ fontSize: '28px' }} />
-        )}
-      </button>
-    </div>
+    <button type="button" onClick={handleClick}>
+      {wishlist[item.id] ? (
+        <PiHeartFill style={{ fontSize: '28px' }} />
+      ) : (
+        <PiHeartLight style={{ fontSize: '28px' }} />
+      )}
+    </button>
   );
 }
