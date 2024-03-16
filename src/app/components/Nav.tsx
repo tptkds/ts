@@ -8,25 +8,25 @@ import CartLink from './CartLink';
 
 export default function Nav() {
   return (
-    <nav className="flex relative min-width-313 items-center m-4 header-bottom sticky h-16 shadow-md rounded-xl bg-white bg-opacity-80 dark:bg-black dark:bg-opacity-60 dark:text-white">
-      <div className="flex basis-1/3 order-1 justify-center  md:justify-normal md:order-0 md:ml-8 md:order-0">
-        <h1 className="md:mr-2 text-xs font-normal flex items-center ">
+    <nav className="flex relative min-width-313 items-center m-4 header-bottom sticky h-16 shadow-lg rounded-xl bg-white bg-opacity-80 dark:bg-black dark:bg-opacity-60 dark:text-white">
+      <div className="flex basis-1/3 order-1 justify-center  lg:justify-normal lg:order-0 lg:ml-8 lg:order-0">
+        <h1 className="lg:mr-2 text-xs font-normal flex items-center ">
           <LogoLink />
         </h1>
       </div>
 
-      <div className="flex basis-1/3 items-center order-0  md:order-1 md:justify-evenly">
+      <div className="flex basis-1/3 items-center order-0  lg:order-1 lg:justify-evenly">
         <Menu />
       </div>
 
       <div className="flex basis-1/3 justify-end text-xs items-center order-2">
-        <div className="mr-2 md:mr-4">
+        <div className="mr-2 lg:mr-4">
           <Search />
         </div>
-        <div className="mr-2 md:mr-4">
+        <div className="mr-2 lg:mr-4">
           <User />
         </div>
-        <div className="mr-2 md:mr-4">
+        <div className="mr-2 lg:mr-4">
           <WishlistLink />
         </div>
         <div className="mr-8">

@@ -51,7 +51,7 @@ export default function List() {
               <div className="h-4/5">
                 <Link
                   href={`/product/detail/${product.id}`}
-                  className="flex items-center w-full h-full"
+                  className="flex items-center w-full h-full relative"
                 >
                   <Image
                     src={product.image}
@@ -60,6 +60,7 @@ export default function List() {
                     height={0}
                     sizes="100vw"
                     style={{ width: '100%', height: 'auto', padding: '20%' }}
+                    priority
                   />
                 </Link>
               </div>

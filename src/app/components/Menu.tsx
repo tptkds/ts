@@ -17,20 +17,20 @@ export default function Menu() {
     <>
       <button
         type="button"
-        className="flex md:hidden ml-8 md:m-0"
+        className="flex lg:hidden ml-8 lg:m-0"
         onClick={toggleMenu}
       >
         <CiMenuBurger />
       </button>
-      <div className="flex items-center p-2 md:p-0 md:basis-1/12 ">
+      <div className="flex items-center p-2 lg:p-0 lg:basis-1/6 ">
         <DarkModeToggleButton />
       </div>
       <ul
-        className="shadow-md absolute bg-white p-4 top-full hidden text-xs md:basis-11/12 md:shadow-none md:bg-transparent md:static md:p-0 md:flex md:justify-between md:w-full md:min-w-220 dark:bg-zinc-900 dark:text-white"
+        className="shadow-md absolute bg-white p-4 top-full hidden text-xs lg:basis-5/6 lg:shadow-none lg:bg-transparent lg:static lg:p-0 lg:flex lg:justify-between lg:w-full lg:min-w-220 dark:bg-zinc-900 dark:text-white"
         ref={menu}
       >
         {CATEGIRIES.map((v) => (
-          <li key={v} className="p-2 md:p-0">
+          <li key={v} className="p-2 lg:p-0">
             <Link href={`/product/${v}/1`} onClick={toggleMenu}>
               {v.replace(/\b\w/g, (match) => match.toUpperCase())}
             </Link>

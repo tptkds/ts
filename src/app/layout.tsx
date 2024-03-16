@@ -41,9 +41,8 @@ export default function RootLayout({
                 <div className="relative h-dvh dark:bg-zinc-900 dark:text-white">
                   <div className="min-h-full dark:bg-zinc-900 dark:text-white">
                     <Header />
-                    <Transition>
-                      <main className="z-0 px-4 sm:px-12">{children}</main>
-                    </Transition>
+
+                    <main className="z-0 px-4 sm:px-12">{children}</main>
                   </div>
                   <Footer />
                 </div>

@@ -18,7 +18,7 @@ export default function Product({ params }: { params: { slug: string } }) {
   useEffect(() => {
     if (prevCategory !== curCategory) dispatch(setCategory(curCategory));
     dispatch(setCurrentPage(curPage));
-  }, []);
+  }, [curCategory]);
 
   return (
     <>

@@ -4,13 +4,12 @@ import React, { useContext, useRef } from 'react';
 import { CiLogin } from 'react-icons/ci';
 import { PiUserCircleLight } from 'react-icons/pi';
 import { auth } from '../firebaseConfigure';
-import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { setUserInfo } from '@/slices/userSlice';
 import { AuthContext } from '../AuthProvider';
+import { useRouter } from 'next/navigation';
 
 export default function User() {
-  const dispatch = useAppDispatch();
   const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const router = useRouter();
   const userMenu = useRef<HTMLDivElement>(null);
   const toggleUserMenu = () => {
     if (userMenu.current?.classList.contains('hidden')) {
@@ -23,6 +22,7 @@ export default function User() {
   const logout = () => {
     setCurrentUser(null);
     auth.signOut();
+    router.push('/');
   };
   return (
     <>

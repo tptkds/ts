@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
-
 import '@theme-toggles/react/css/Classic.css';
 import { Classic } from '@theme-toggles/react';
 export default function DarkModeToggleButton() {

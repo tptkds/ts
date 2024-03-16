@@ -1,25 +1,21 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import List from './components/List';
 import { useRouter } from 'next/navigation';
-import { auth } from '../firebaseConfigure';
-import { Unsubscribe, onAuthStateChanged } from 'firebase/auth';
+import { AuthContext } from '../AuthProvider';
 
 export default function WishlistComponent() {
   const router = useRouter();
-
+  const { currentUser } = useContext(AuthContext);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   useEffect(() => {
-    const unsubscribe: Unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user) {
+    if (isLoaded)
+      if (!currentUser) {
         alert('Login required service.');
-        router.push('/');
+        router.back();
       }
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, [router]);
+    if (!isLoaded) setIsLoaded(true);
+  }, [isLoaded, currentUser]);
 
   return (
     <div>
