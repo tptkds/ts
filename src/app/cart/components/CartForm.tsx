@@ -1,4 +1,6 @@
 'use client';
+import { AuthContext } from '@/app/AuthProvider';
+import { db } from '@/app/firebaseConfigure';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { setCartItems } from '@/slices/productSlict';
 import { CartItems } from '@/types/globalTypes';
@@ -7,26 +9,26 @@ import {
   getCartItemsLocalStorage,
   setCartItemsLocalStorage,
 } from '@/utilities/localstorage';
+import { doc, updateDoc } from 'firebase/firestore';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Insvg } from '../Insvg';
 interface CheckBoxes {
   [key: string]: boolean;
 }
 
 function CartForm() {
   const dispatch = useDispatch();
-  const [isLoaded, setIsLoaded] = useState(false);
+  //const [isLoaded, setIsLoaded] = useState(false);
   const [checkBoxes, setCheckBoxes] = useState<CheckBoxes>({});
   const [checkAllBox, setCheckAllBox] = useState<boolean>(false);
+  const { currentUser } = useContext(AuthContext);
+
   const cartItems: CartItems = useAppSelector(
     (state) => state.product.cartItems
   );
-
   let cartItemKeys: string[] = cartItems && Object.keys(cartItems);
-
   useEffect(() => {
     let checkBoxesData: { [key: string]: boolean } = {};
     Object.keys(cartItems).forEach((key) => {
@@ -59,13 +61,47 @@ function CartForm() {
   ) => {
     e.preventDefault();
     const target = e.target as HTMLButtonElement;
+    let newItems = { ...cartItems };
+
     if (target?.name === 'deleteMany') {
       const keys: string[] = Object.keys(checkBoxes).filter(
         (key) => checkBoxes[key]
       );
-      deleteCartItemsLocalStorage(keys);
+      if (currentUser) {
+        let newCartItems: CartItems = {
+          ...cartItems,
+        };
+        keys.forEach((key) => {
+          delete newCartItems[key];
+        });
+        newItems = newCartItems;
+        let userRef = null;
+        if (currentUser?.email) userRef = doc(db, 'users', currentUser?.email);
+        if (userRef)
+          updateDoc(userRef, {
+            cartItems: newCartItems,
+          });
+      } else {
+        deleteCartItemsLocalStorage(keys);
+        newItems = getCartItemsLocalStorage();
+      }
     } else if (target?.name === 'deleteOne') {
-      deleteCartItemsLocalStorage([target.id]);
+      if (currentUser) {
+        let newCartItems: CartItems = {
+          ...cartItems,
+        };
+        delete newCartItems[target.id];
+        newItems = newCartItems;
+        let userRef = null;
+        if (currentUser?.email) userRef = doc(db, 'users', currentUser?.email);
+        if (userRef)
+          updateDoc(userRef, {
+            cartItems: newCartItems,
+          });
+      } else {
+        deleteCartItemsLocalStorage([target.id]);
+        newItems = getCartItemsLocalStorage();
+      }
     } else if (target?.name === 'increment' && key) {
       const newItem = {
         [key]: {
@@ -74,8 +110,15 @@ function CartForm() {
         },
       };
       const newCartItems = { ...cartItems, ...newItem };
-      console.log(cartItems, newCartItems);
-      setCartItemsLocalStorage(newCartItems);
+      newItems = newCartItems;
+      if (currentUser) {
+        let userRef = null;
+        if (currentUser?.email) userRef = doc(db, 'users', currentUser?.email);
+        if (userRef)
+          updateDoc(userRef, {
+            cartItems: newCartItems,
+          });
+      } else setCartItemsLocalStorage(newCartItems);
     } else if (target?.name === 'decrement' && key) {
       if (cartItems[key].count - 1 < 1) return;
       const newItem = {
@@ -85,18 +128,25 @@ function CartForm() {
         },
       };
       const newCartItems = { ...cartItems, ...newItem };
-      console.log(cartItems, newCartItems);
-      setCartItemsLocalStorage(newCartItems);
+      newItems = newCartItems;
+      if (currentUser) {
+        let userRef = null;
+        if (currentUser?.email) userRef = doc(db, 'users', currentUser?.email);
+        if (userRef)
+          updateDoc(userRef, {
+            cartItems: newCartItems,
+          });
+      } else setCartItemsLocalStorage(newCartItems);
     } else {
       return;
     }
-    dispatch(setCartItems(getCartItemsLocalStorage()));
+    dispatch(setCartItems(newItems));
   };
 
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-  if (!isLoaded) return;
+  // useEffect(() => {
+  //   setIsLoaded(true);
+  // }, []);
+  // if (!isLoaded) return;
 
   return (
     <>
@@ -209,7 +259,7 @@ function CartForm() {
               })
             ) : (
               <p className="text-center text-xs p-14 ">
-                There are no items in your cart
+                장바구니가 비어 있습니다.
               </p>
             )}
             <li>

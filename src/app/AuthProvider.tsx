@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         getUserSnapshot(user).then((userSnap) => {
           const wishlist = userSnap?.data()?.wishlist;
           dispatch(setWishlist(wishlist));
-          const cartItems = userSnap?.data()?.cart;
+          const cartItems = userSnap?.data()?.cartItems;
           dispatch(setCartItems(cartItems));
         });
       }

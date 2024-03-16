@@ -41,7 +41,10 @@ function Form() {
             displayName: name,
           });
           dispatch(setUserInfo(user));
-          addDoc(collection(db, 'users'), { wishlist: {}, cart: {} });
+          addDoc(collection(db, 'users'), {
+            wishlist: {},
+            cart: {},
+          });
           router.push('/');
         })
         .catch((error) => {
