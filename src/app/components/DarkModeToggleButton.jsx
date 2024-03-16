@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import '@theme-toggles/react/css/Classic.css';
-import { Classic } from '@theme-toggles/react';
+import { IoIosMoon, IoIosSunny } from 'react-icons/io';
+
 export default function DarkModeToggleButton() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -14,17 +15,18 @@ export default function DarkModeToggleButton() {
   if (!mounted) {
     return null;
   }
-  const handleClick = (e) => {
+  const themeToggle = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
   return (
     <>
-      <Classic
-        duration={750}
-        toggled={theme === 'dark'}
-        onToggle={handleClick}
-        className="text-lg"
-      />
+      <button onClick={themeToggle}>
+        {theme === 'light' ? (
+          <IoIosSunny style={{ fontSize: '22px' }} />
+        ) : (
+          <IoIosMoon style={{ fontSize: '20px' }} />
+        )}
+      </button>
     </>
   );
 }

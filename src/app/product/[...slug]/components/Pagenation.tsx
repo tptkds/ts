@@ -9,6 +9,7 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 import { Product } from '@/types/globalTypes';
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 export default function Pagenation() {
   const curCategory = useAppSelector((state) => state.product.category);
@@ -40,7 +41,8 @@ export default function Pagenation() {
   const totalPages: number = Math.ceil(totalItems / ITEMSPERPAGE);
 
   const router = useRouter();
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+  const movePage = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLButtonElement;
     const name: string = target.name;
 
@@ -59,16 +61,23 @@ export default function Pagenation() {
   return (
     <ul className="flex justify-center items-center">
       <li className="p-2.5">
-        <button name="newer" onClick={handleClick} disabled={currentPage === 1}>
-          NEWER
+        <button
+          name="newer"
+          className="flex items-center disabled:opacity-20 "
+          onClick={movePage}
+          disabled={currentPage === 1}
+          style={{ fontSize: '20px' }}
+        >
+          <FiChevronLeft />
         </button>
       </li>
       {Array.from({ length: totalPages }, (_, index) => index + 1).map(
         (page) => (
           <li key={page} className="p-2.5">
             <button
+              className="disabled:font-semibold text-base disabled:text-zinc-500"
               name={page.toString()}
-              onClick={handleClick}
+              onClick={movePage}
               disabled={page === currentPage}
             >
               {page}
@@ -79,10 +88,12 @@ export default function Pagenation() {
       <li className="p-2.5">
         <button
           name="older"
-          onClick={handleClick}
+          className="flex items-center disabled:opacity-20"
+          onClick={movePage}
           disabled={currentPage === totalPages}
+          style={{ fontSize: '20px' }}
         >
-          OLDER
+          <FiChevronRight />
         </button>
       </li>
     </ul>

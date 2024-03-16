@@ -95,3 +95,7 @@
 .min-width-313 {
   min-width: 313px;
 }
+
+svg {
+  pointer-events: none;
+}

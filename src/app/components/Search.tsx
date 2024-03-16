@@ -3,10 +3,9 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 import { Product } from '@/types/globalTypes';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
-import { IoIosSearch } from 'react-icons/io';
+import { FiSearch } from 'react-icons/fi';
 import { IoCloseSharp } from 'react-icons/io5';
-import { MdCancel, MdOutlineCancel } from 'react-icons/md';
-
+``;
 function Search() {
   const productList = useAppSelector((state) => state.product.productList);
   const [searchText, setSearchText] = useState<string>('');
@@ -30,9 +29,9 @@ function Search() {
     }
   };
 
-  const handleClick = (e) => {
+  const toggleModal = (e) => {
     e.preventDefault();
-    if (e.target.parentNode.name === 'searching') {
+    if (e.target.name === 'searching') {
       modalBackground.current?.classList.remove('hidden');
       input.current?.focus();
     } else {
@@ -47,20 +46,26 @@ function Search() {
   if (!isLoaded) return;
   return (
     <>
-      <div className="flex items-center relative w-full">
-        <button name="searching" id="searching" onClick={handleClick}>
-          <IoIosSearch className="text-xl" />
+      <div className="flex items-center relative w-full ">
+        <button
+          name="searching"
+          id="searching"
+          className="p-4"
+          style={{ fontSize: '46px' }}
+          onClick={toggleModal}
+        >
+          <FiSearch />
         </button>
 
         <div
-          className="bg-black bg-opacity-30 w-full h-full fixed top-0 left-0 hidden"
+          className="bg-black bg-opacity-30 w-full h-full fixed top-0 left-0 hidden "
           ref={modalBackground}
         >
-          <div className="absolute top-10  search-modal-center bg-white w-1/2 h-80svh overflow-y-auto">
+          <div className="absolute top-10 search-modal-center bg-white text-sm w-11/12 sm:w-8/12 xl:w-1/2 h-80svh overflow-y-auto ">
             <button
               name="downModal"
               className="absolute right-4 top-4 text-xl"
-              onClick={handleClick}
+              onClick={toggleModal}
             >
               <IoCloseSharp />
             </button>
@@ -69,10 +74,10 @@ function Search() {
               value={searchText}
               onChange={handleChange}
               placeholder="Typing Somthing..."
-              className="border-b border-solid border-black focus:outline-none dark:border-white w-full"
+              className="border-b border-solid border-black focus:outline-none dark:border-white w-full pb-2"
               ref={input}
             />
-            <ul className="bg-white dark:bg-black dark:bg-opacity-60 dark:text-white">
+            <ul className="mt-4 bg-white dark:bg-black dark:bg-opacity-60 dark:text-white">
               {searchedDatas.map((item) => (
                 <li key={item.id} className="truncate px-4 py-2 ">
                   <Link

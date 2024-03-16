@@ -29,7 +29,7 @@ export default function Product({ params }: { params: { slug: string } }) {
       <div className="flex flex-col mb-44">
         <List />
       </div>
-      <div className="my-14">
+      <div className="mt-14">
         <Pagenation />
       </div>
     </>

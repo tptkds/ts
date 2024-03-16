@@ -1,9 +1,11 @@
 'use client';
 import React, { useRef } from 'react';
-import { CiMenuBurger } from 'react-icons/ci';
+
 import DarkModeToggleButton from './DarkModeToggleButton';
 import Link from 'next/link';
 import { CATEGIRIES } from '@/constants/product';
+
+import { GrMenu } from 'react-icons/gr';
 export default function Menu() {
   const menu = useRef<HTMLUListElement>(null);
   const toggleMenu = () => {
@@ -19,14 +21,15 @@ export default function Menu() {
         type="button"
         className="flex lg:hidden ml-8 lg:m-0"
         onClick={toggleMenu}
+        style={{ fontSize: '20px' }}
       >
-        <CiMenuBurger />
+        <GrMenu />
       </button>
       <div className="flex items-center p-2 lg:p-0 lg:basis-1/6 ">
         <DarkModeToggleButton />
       </div>
       <ul
-        className="shadow-md absolute bg-white p-4 top-full hidden text-xs lg:basis-5/6 lg:shadow-none lg:bg-transparent lg:static lg:p-0 lg:flex lg:justify-between lg:w-full lg:min-w-220 dark:bg-zinc-900 dark:text-white"
+        className="shadow-md absolute bg-white p-4 top-full hidden text-xs lg:basis-5/6 lg:shadow-none lg:bg-transparent lg:static lg:p-0 lg:flex lg:justify-between lg:w-full lg:min-w-220 "
         ref={menu}
       >
         {CATEGIRIES.map((v) => (

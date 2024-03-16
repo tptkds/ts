@@ -8,6 +8,7 @@ import DataInitializer from './DataInitializer';
 import Header from './components/Header';
 import { AuthProvider } from './AuthProvider';
 import Transition from './Transition';
+import Search from './components/Search';
 
 const josefinSans = Josefin_Sans({
   subsets: ['latin'],
@@ -45,6 +46,9 @@ export default function RootLayout({
                     <main className="z-0 px-4 sm:px-12">{children}</main>
                   </div>
                   <Footer />
+                  <div className="fixed bottom-10 right-10 bg-white shadow-lg rounded-full bg-opacity-80  z-20">
+                    <Search />
+                  </div>
                 </div>
               </DataInitializer>
             </AuthProvider>

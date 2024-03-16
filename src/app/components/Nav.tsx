@@ -20,17 +20,17 @@ export default function Nav() {
       </div>
 
       <div className="flex basis-1/3 justify-end text-xs items-center order-2">
-        <div className="mr-2 lg:mr-4">
+        {/* <div className="mr-1 md:mr-4">
           <Search />
-        </div>
-        <div className="mr-2 lg:mr-4">
-          <User />
-        </div>
-        <div className="mr-2 lg:mr-4">
+        </div> */}
+        <div className="mr-1 md:mr-4">
           <WishlistLink />
         </div>
-        <div className="mr-8">
+        <div className="mr-1 md:mr-4">
           <CartLink />
+        </div>
+        <div className="mr-8">
+          <User />
         </div>
       </div>
     </nav>
