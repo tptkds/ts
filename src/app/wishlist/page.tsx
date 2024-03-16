@@ -7,6 +7,7 @@ import { Unsubscribe, onAuthStateChanged } from 'firebase/auth';
 
 export default function WishlistComponent() {
   const router = useRouter();
+
   useEffect(() => {
     const unsubscribe: Unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {

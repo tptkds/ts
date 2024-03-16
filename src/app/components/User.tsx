@@ -10,7 +10,7 @@ import { AuthContext } from '../AuthProvider';
 
 export default function User() {
   const dispatch = useAppDispatch();
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
   const userMenu = useRef<HTMLDivElement>(null);
   const toggleUserMenu = () => {
     if (userMenu.current?.classList.contains('hidden')) {
@@ -21,8 +21,8 @@ export default function User() {
   };
 
   const logout = () => {
+    setCurrentUser(null);
     auth.signOut();
-    dispatch(setUserInfo(null));
   };
   return (
     <>
