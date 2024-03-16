@@ -6,7 +6,7 @@ import { DocumentReference, doc, getDoc } from 'firebase/firestore';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { AppDispatch } from '@/types/reduxTypes';
 ``;
-import { setWishlist } from '@/slices/productSlict';
+import { setCartItems, setWishlist } from '@/slices/productSlict';
 
 interface AuthContextProps {
   currentUser: User | null;
@@ -38,7 +38,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         getUserSnapshot(user).then((userSnap) => {
           const wishlist = userSnap?.data()?.wishlist;
           dispatch(setWishlist(wishlist));
-          console.log(wishlist);
+          const cartItems = userSnap?.data()?.cart;
+          dispatch(setCartItems(cartItems));
         });
       }
       setLoading(false);

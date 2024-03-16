@@ -5,8 +5,8 @@ import { IoBagSharp } from 'react-icons/io5';
 export default function CartLink() {
   return (
     <Link href="/cart" className="flex items-center">
-      <IoBagSharp className="mr-2" style={{ fontSize: '20px' }} />
-      <p className="">Cart</p>
+      <IoBagSharp className="xl:mr-2" style={{ fontSize: '20px' }} />
+      <p className="hidden xl:block">Cart</p>
     </Link>
   );
 }

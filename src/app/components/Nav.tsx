@@ -5,6 +5,7 @@ import LogoLink from './LogoLink';
 import Menu from './Menu';
 import WishlistLink from './WishlistLink';
 import CartLink from './CartLink';
+import MyPage from './MyPage';
 
 export default function Nav() {
   return (
@@ -20,13 +21,13 @@ export default function Nav() {
       </div>
 
       <div className="flex basis-1/3 justify-end text-xs items-center order-2">
-        {/* <div className="mr-1 md:mr-4">
-          <Search />
-        </div> */}
-        <div className="mr-1 md:mr-4">
+        <div className="mr-2 sm:mr-4">
+          <MyPage />
+        </div>
+        <div className="mr-2 sm:mr-4">
           <WishlistLink />
         </div>
-        <div className="mr-1 md:mr-4">
+        <div className="mr-2 sm:mr-4">
           <CartLink />
         </div>
         <div className="mr-8">

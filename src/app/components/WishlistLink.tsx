@@ -6,8 +6,8 @@ import { PiHeartStraightFill } from 'react-icons/pi';
 export default function WishlistLink() {
   return (
     <Link href="/wishlist" className="flex items-center">
-      <PiHeartStraightFill className=" mr-2" style={{ fontSize: '20px' }} />
-      <p className="">Wish List</p>
+      <PiHeartStraightFill className=" xl:mr-2" style={{ fontSize: '20px' }} />
+      <p className="hidden xl:block">Wish List</p>
     </Link>
   );
 }
