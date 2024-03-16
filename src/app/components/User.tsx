@@ -1,15 +1,16 @@
-import { useAppSelector } from '@/hooks/useAppSelector';
+'use client';
 import Link from 'next/link';
-import React, { useRef } from 'react';
-import { CiLogin, CiLogout } from 'react-icons/ci';
+import React, { useContext, useRef } from 'react';
+import { CiLogin } from 'react-icons/ci';
 import { PiUserCircleLight } from 'react-icons/pi';
 import { auth } from '../firebaseConfigure';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { setUserInfo } from '@/slices/userSlice';
+import { AuthContext } from '../AuthProvider';
 
 export default function User() {
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.user.userInfo);
+  const { currentUser } = useContext(AuthContext);
   const userMenu = useRef<HTMLDivElement>(null);
   const toggleUserMenu = () => {
     if (userMenu.current?.classList.contains('hidden')) {
@@ -25,7 +26,7 @@ export default function User() {
   };
   return (
     <>
-      {user ? (
+      {currentUser ? (
         <>
           <button
             type="button"

@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import { Inter, Josefin_Sans, Noto_Sans } from 'next/font/google';
 import DataInitializer from './DataInitializer';
 import Header from './components/Header';
+import { AuthProvider } from './AuthProvider';
 
 const josefinSans = Josefin_Sans({
   subsets: ['latin'],
@@ -34,14 +35,16 @@ export default function RootLayout({
       >
         <StoreProvider>
           <ThemeProvider attribute="class">
-            <DataInitializer />
-            <div className="relative h-dvh dark:bg-zinc-900 dark:text-white">
-              <div className="min-h-full dark:bg-zinc-900 dark:text-white">
-                <Header />
-                <main className="z-0 px-4 sm:px-12">{children}</main>
+            <AuthProvider>
+              <DataInitializer />
+              <div className="relative h-dvh dark:bg-zinc-900 dark:text-white">
+                <div className="min-h-full dark:bg-zinc-900 dark:text-white">
+                  <Header />
+                  <main className="z-0 px-4 sm:px-12">{children}</main>
+                </div>
+                <Footer />
               </div>
-              <Footer />
-            </div>
+            </AuthProvider>
           </ThemeProvider>
         </StoreProvider>
       </body>

@@ -164,7 +164,7 @@ export default function MyPage() {
                   ? 'Changing Name'
                   : 'Changing Password'}
               </h4>
-              <div className="text-red-600 text-sm mb-4">{error}</div>{' '}
+              <div className="text-red-600 text-sm mb-4">{error}</div>
               <label className="mb-4 w-full">
                 {clickedButtonName === 'name' ? 'New Name' : 'New Password'}
                 {clickedButtonName === 'name' ? (
