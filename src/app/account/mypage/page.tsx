@@ -1,15 +1,11 @@
 'use client';
+import { AuthContext } from '@/app/AuthProvider';
 import { auth } from '@/app/firebaseConfigure';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { useAppSelector } from '@/hooks/useAppSelector';
 import { setUserInfo } from '@/slices/userSlice';
-import {
-  reauthenticateWithCredential,
-  updatePassword,
-  updateProfile,
-} from 'firebase/auth';
+import { updatePassword, updateProfile } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { IoCloseSharp } from 'react-icons/io5';
 
 export default function MyPage() {
@@ -20,8 +16,17 @@ export default function MyPage() {
   const [clickedButtonName, setClickedButtonName] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
-  const user = useAppSelector((state) => state.user.userInfo);
+  const { currentUser } = useContext(AuthContext);
   const modalBackground = useRef<HTMLDivElement | null>(null);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isLoaded)
+      if (!currentUser) {
+        router.push('/account/login');
+      }
+    if (!isLoaded) setIsLoaded(true);
+  }, [isLoaded, currentUser]);
 
   const toggleModal = (e: any = null) => {
     if (e?.target.name === 'nameButton') setClickedButtonName('name');
@@ -46,7 +51,7 @@ export default function MyPage() {
         setIsUpdating(false);
         return;
       }
-      if (name == user?.displayName) {
+      if (name == currentUser?.displayName) {
         setError('Please enter a different name');
         setIsUpdating(false);
         return;
@@ -119,11 +124,11 @@ export default function MyPage() {
         <div className="mt-8">
           <div className="flex ">
             <p className="w-14">Name. </p>
-            <p>{user?.displayName}</p>
+            <p>{currentUser?.displayName}</p>
           </div>
           <div className="flex ">
             <p className="w-14">Email. </p>
-            <p>{user?.email}</p>
+            <p>{currentUser?.email}</p>
           </div>
         </div>
         <div className="flex flex-col items-center mt-6 w-full ">

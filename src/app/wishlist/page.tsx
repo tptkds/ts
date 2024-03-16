@@ -11,7 +11,7 @@ export default function WishlistComponent() {
   useEffect(() => {
     if (isLoaded)
       if (!currentUser) {
-        alert('Login required service.');
+        alert('로그인이 필요한 서비스입니다.');
         router.back();
       }
     if (!isLoaded) setIsLoaded(true);

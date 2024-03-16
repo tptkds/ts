@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { auth } from '../firebaseConfigure';
 import { AuthContext } from '../AuthProvider';
 import { useRouter } from 'next/navigation';
@@ -14,7 +14,7 @@ export default function User() {
   const dispatch = useAppDispatch();
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const router = useRouter();
-
+  const modal = useRef<HTMLDivElement | null>(null);
   const logout = () => {
     setCurrentUser(null);
     auth.signOut();
@@ -22,6 +22,10 @@ export default function User() {
     const cartItems: CartItems = getCartItemsLocalStorage();
     dispatch(setCartItems(cartItems));
 
+    modal.current?.classList.remove('hidden');
+    setTimeout(() => {
+      modal.current?.classList.add('hidden');
+    }, 1500);
     router.push('/');
   };
   return (
@@ -37,6 +41,14 @@ export default function User() {
           <p className="hidden xl:block">Login</p>
         </Link>
       )}
+      <div
+        className="w-full h-full fixed top-0 left-0 hidden transition-all"
+        ref={modal}
+      >
+        <div className="absolute z-50 top-10  shadow-md search-modal-center bg-white w-80 h-32 shadow-lg flex items-center justify-center  overflow-y-auto">
+          <p>정상적으로 로그아웃 되었습니다.</p>
+        </div>
+      </div>
     </>
   );
 }
