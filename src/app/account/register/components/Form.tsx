@@ -1,11 +1,12 @@
 'use client';
 import React, { useState } from 'react';
-import { auth } from '@/app/firebaseConfigure';
+import { auth, db } from '@/app/firebaseConfigure';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { AppDispatch } from '@/types/reduxTypes';
 import { setUserInfo } from '@/slices/userSlice';
 import { useRouter } from 'next/navigation';
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 
 function Form() {
   const [name, setName] = useState<string>('');
@@ -40,6 +41,7 @@ function Form() {
             displayName: name,
           });
           dispatch(setUserInfo(user));
+          addDoc(collection(db, 'users'), { wishlist: {} });
           router.push('/');
         })
         .catch((error) => {

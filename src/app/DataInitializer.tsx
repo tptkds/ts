@@ -13,9 +13,21 @@ import {
 } from '@/utilities/localstorage';
 import { AppDispatch } from '@/types/reduxTypes';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './firebaseConfigure';
+import { User, onAuthStateChanged } from 'firebase/auth';
+import { auth, db } from './firebaseConfigure';
 import { setUserInfo } from '@/slices/userSlice';
+import {
+  DocumentData,
+  DocumentReference,
+  DocumentSnapshot,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore';
+import { get } from 'firebase/database';
 
 export default function DataInitializer() {
   const dispatch: AppDispatch = useAppDispatch();
@@ -29,17 +41,25 @@ export default function DataInitializer() {
 
     const cartItems: CartItems = getCartItemsLocalStorage();
     dispatch(setCartItems(cartItems));
-
-    const wishlist: Wishlist = getWishlistLocalStorage();
-    dispatch(setWishlist(wishlist));
   }, []);
 
   useEffect(() => {
+    async function getUserSnapshot(user: User) {
+      let userDoc: DocumentReference | null = null;
+      if (user.email) userDoc = doc(db, 'users', user.email);
+      if (userDoc) return await getDoc(userDoc);
+    }
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(setUserInfo(user));
+        getUserSnapshot(user).then((userSnap) => {
+          const wishlist = userSnap?.data()?.wishlist;
+          dispatch(setWishlist(wishlist));
+        });
       }
     });
   }, []);
+
   return <></>;
 }

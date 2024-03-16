@@ -48,35 +48,3 @@ export const deleteCartItemsLocalStorage = (keys: string[]) => {
   });
   localStorage.setItem('cartItems', JSON.stringify(newCartItems));
 };
-
-export const addWishlistLocalStorage = (item: Product) => {
-  const wishlist: Wishlist | never[] = getWishlistLocalStorage();
-  const key: number = item.id;
-  const product: Product = item;
-
-  if (!wishlist || Object.keys(wishlist).length === 0) {
-    const newWishlist = { [key]: product };
-    localStorage.setItem('wishlist', JSON.stringify(newWishlist));
-  } else {
-    let newWishlist = { ...wishlist, [item.id]: item };
-    localStorage.setItem('wishlist', JSON.stringify(newWishlist));
-  }
-};
-
-export const getWishlistLocalStorage = (): Wishlist => {
-  if (typeof window === 'undefined') return {};
-  const jsonString = localStorage.getItem('wishlist');
-  if (jsonString) {
-    const parsedData: Wishlist = JSON.parse(jsonString);
-    return parsedData;
-  }
-  return {};
-};
-
-export const deleteWishlistLocalStorage = (keys: string[]) => {
-  let newWishlist: Wishlist = getWishlistLocalStorage();
-  keys.forEach((key) => {
-    delete newWishlist[key];
-  });
-  localStorage.setItem('wishlist', JSON.stringify(newWishlist));
-};
