@@ -16,7 +16,7 @@ export default function Nav() {
         </h1>
       </div>
 
-      <div className="flex basis-1/3 items-center order-0  lg:order-1 lg:justify-evenly">
+      <div className="flex basis-1/3 items-center order-0 h-full lg:order-1 lg:justify-evenly">
         <Menu />
       </div>
 

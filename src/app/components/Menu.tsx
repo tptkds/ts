@@ -25,11 +25,11 @@ export default function Menu() {
       >
         <GrMenu />
       </button>
-      <div className="flex items-center p-2 lg:p-0 lg:basis-1/6 ">
+      <div className="flex p-2 lg:p-0 lg:basis-1/6 ">
         <DarkModeToggleButton />
       </div>
       <ul
-        className="shadow-md absolute bg-white p-4 top-full hidden lg:basis-5/6 lg:shadow-none lg:bg-transparent lg:static lg:p-0 lg:flex lg:justify-between lg:w-full lg:min-w-220 "
+        className=" hidden text-sm font-light shadow-md absolute bg-white p-4 top-full lg:basis-5/6 lg:shadow-none lg:bg-transparent lg:static lg:p-0 lg:flex lg:justify-between   lg:w-full lg:min-w-220"
         ref={menu}
       >
         {CATEGIRIES.map((v) => (

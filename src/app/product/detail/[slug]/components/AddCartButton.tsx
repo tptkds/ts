@@ -33,23 +33,36 @@ export default function AddCartButton({ item }: { item: Product }) {
 
   return (
     <>
-      <button onClick={handleClick}>ADD CART</button>
+      <button
+        onClick={handleClick}
+        className="mt-4 w-full lg:w-1/2  bg-zinc-900 dark:hover:bg-zinc-200 dark:bg-white dark:disabled:bg-zinc-400 p-4 text-white dark:text-black  rounded hover:bg-zinc-700 transition disabled:bg-zinc-400"
+      >
+        장바구니에 담기
+      </button>
       <div
-        className="absolute flex flex-col modal-center shadow-md items-center pt-8 z-20 rounded-box hidden "
+        className="absolute flex flex-col modal-center shadow-md items-center pt-8 z-30 rounded-box hidden w-96 "
         ref={modal}
       >
         <p className=" mb-4">상품이 장바구니에 담겼어요.</p>
-        <div className="flex flex-row ">
-          <button name="goCart" onClick={handleClick} className="mr-8 p-4 ">
+        <div className="flex flex-row w-full">
+          <button
+            name="goCart"
+            onClick={handleClick}
+            className="mr-8  bg-zinc-900 dark:hover:bg-zinc-200 dark:bg-white w-1/2 dark:disabled:bg-zinc-400 py-2 px-4 text-white dark:text-black rounded hover:bg-zinc-700 transition disabled:bg-zinc-400"
+          >
             장바구니로 이동
           </button>
-          <button name="continueShopping" onClick={handleClick} className="p-4">
+          <button
+            name="continueShopping"
+            onClick={handleClick}
+            className="w-1/2 bg-zinc-900 dark:hover:bg-zinc-200 dark:bg-white dark:disabled:bg-zinc-400 py-2 px-4 text-white dark:text-black  rounded hover:bg-zinc-700 transition disabled:bg-zinc-400"
+          >
             계속 쇼핑하기
           </button>
         </div>
       </div>
       <div
-        className="bg-black bg-opacity-30 w-full h-full fixed top-0 left-0 hidden"
+        className="bg-black bg-opacity-30 w-full h-full fixed top-0 left-0 hidden z-20 absolute"
         ref={modalBackground}
       ></div>
     </>

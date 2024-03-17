@@ -117,10 +117,10 @@ function Form() {
         <div className="flex flex-col items-center w-full my-8">
           <button
             type="submit"
-            className="h-12 bg-zinc-900 dark:bg-zinc-400 dark:hover:bg-neutral-300  hover:bg-zinc-700 text-white dark:text-zinc-900 transition duration-200 ease-in-out  w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3"
+            className="dark:bg-white dark:text-black dark:hover:bg-zinc-300 h-12 bg-zinc-900   text-white  transition duration-200 ease-in-out  w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3"
             disabled={isRegistering}
           >
-            {isRegistering ? 'Creating...' : 'Create'}
+            {isRegistering ? '회원가입 중...' : '회원가입하기'}
           </button>
         </div>
       </form>

@@ -7,7 +7,7 @@ export default function CreateAccount() {
       href="/account/register"
       className="underline underline-offset-4  mb-4"
     >
-      회원가입하기
+      회원가입
     </Link>
   );
 }

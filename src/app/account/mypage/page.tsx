@@ -136,7 +136,7 @@ export default function MyPage() {
           <button
             name="nameButton"
             type="button"
-            className="h-12  dark:bg-zinc-700 dark:hover:bg-zinc-500 bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
+            className="h-12  dark:bg-white dark:text-black dark:hover:bg-zinc-300  bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
             onClick={toggleModal}
           >
             이름 변경
@@ -144,7 +144,7 @@ export default function MyPage() {
           <button
             name="passwordButton"
             type="button"
-            className="h-12 mt-4  bg-zinc-900 dark:bg-zinc-700 dark:hover:bg-zinc-500 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
+            className="mt-4 h-12  dark:bg-white dark:text-black dark:hover:bg-zinc-300  bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
             onClick={toggleModal}
           >
             패스워드 변경
@@ -191,7 +191,7 @@ export default function MyPage() {
               </label>
               <button
                 type="button"
-                className="h-12 mt-4  bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
+                className="h-12 mt-4 dark:bg-white dark:text-black dark:hover:bg-zinc-300    bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
                 onClick={changeSomething}
                 disabled={isUpdating}
               >

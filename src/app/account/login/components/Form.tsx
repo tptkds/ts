@@ -29,6 +29,7 @@ function Form() {
     try {
       await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+          setIsSignIng(false);
           const user = userCredential.user;
           dispatch(setUserInfo(user));
           router.push('/');
@@ -61,6 +62,7 @@ function Form() {
           }
         });
     } catch (error) {
+      setIsSignIng(false);
       console.error('로그인 에러:', error);
     }
   };
@@ -93,9 +95,9 @@ function Form() {
           <button
             type="submit"
             disabled={isSignIng}
-            className="h-12  bg-zinc-900 dark:bg-zinc-400 dark:hover:bg-neutral-300  hover:bg-zinc-700 text-white dark:text-zinc-900 transition duration-200 ease-in-out  w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3"
+            className="h-12  bg-zinc-900 dark:bg-white dark:text-black dark:hover:bg-zinc-300  text-white transition duration-200 ease-in-out  w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3"
           >
-            로그인하기
+            {isSignIng ? '로그인 중' : '로그인하기'}
           </button>
         </div>
       </form>
