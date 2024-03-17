@@ -25,6 +25,7 @@ export default function List() {
     (state) => state.product.currentPage
   );
   const [curProductList, setCurProductList] = useState<Product[]>([]);
+
   useEffect(() => {
     if (curCategory === 'all') setCurProductList(productList);
     else {
@@ -40,6 +41,7 @@ export default function List() {
 
   const startIndex: number = ITEMSPERPAGE * (currentPage - 1);
   const endIndex: number = startIndex + ITEMSPERPAGE;
+
   const curProducts: Product[] = curProductList.slice(startIndex, endIndex);
 
   return (

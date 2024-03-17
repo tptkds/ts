@@ -40,6 +40,7 @@ export default function MyPage() {
       setName('');
       setClickedButtonName('');
       setIsUpdating(false);
+      setError('');
     }
   };
 
@@ -47,17 +48,17 @@ export default function MyPage() {
     if (clickedButtonName === 'name') {
       setIsUpdating(true);
       if (name === '') {
-        setError('Please enter a new name');
+        setError('이름을 입력해 주세요.');
         setIsUpdating(false);
         return;
       }
       if (name == currentUser?.displayName) {
-        setError('Please enter a different name');
+        setError('기존과 다른 이름을 입력해 주세요.');
         setIsUpdating(false);
         return;
       }
       if (name.length > 6) {
-        setError('Please enter a name with Six characters or less.');
+        setError('6글자 이하의 이름을 입력해 주세요.');
         setIsUpdating(false);
         return;
       }
@@ -69,7 +70,7 @@ export default function MyPage() {
               dispatch(setUserInfo(auth.currentUser));
               toggleModal();
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.error(error));
         } catch (error) {
           console.error(error);
           setIsUpdating(false);
@@ -79,12 +80,12 @@ export default function MyPage() {
     if (clickedButtonName === 'password') {
       setIsUpdating(true);
       if (password === '') {
-        setError('Please enter a new password');
+        setError('패스워드를 입력해 주세요.');
         setIsUpdating(false);
         return;
       }
       if (password.length < 6) {
-        setError('Please enter a password with Six characters or more.');
+        setError('6글자 이상의 패스워드를 입력해 주세요.');
         setIsUpdating(false);
         return;
       }
@@ -135,18 +136,18 @@ export default function MyPage() {
           <button
             name="nameButton"
             type="button"
-            className="h-12 text-sm bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
+            className="h-12 text-sm dark:bg-zinc-700 dark:hover:bg-zinc-500 bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
             onClick={toggleModal}
           >
-            Change Name
+            이름 변경
           </button>
           <button
             name="passwordButton"
             type="button"
-            className="h-12 mt-4 text-sm bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
+            className="h-12 mt-4 text-sm bg-zinc-900 dark:bg-zinc-700 dark:hover:bg-zinc-500 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
             onClick={toggleModal}
           >
-            Change Password
+            패스워드 변경
           </button>
         </div>
 
@@ -154,7 +155,7 @@ export default function MyPage() {
           className="bg-black bg-opacity-30 w-full h-full fixed top-0 left-0 hidden"
           ref={modalBackground}
         >
-          <div className="absolute z-50 top-10  shadow-md search-modal-center bg-white w-96 h-96  overflow-y-auto">
+          <div className="absolute z-50 top-10  shadow-md search-modal-center bg-white w-96 h-96  overflow-y-auto dark:bg-zinc-800">
             <button
               name="downModal"
               className="absolute right-4 top-4 text-xl"
@@ -165,20 +166,18 @@ export default function MyPage() {
 
             <div className="flex flex-col justify-center items-center h-full w-full">
               <h4 className="mb-8">
-                {clickedButtonName === 'name'
-                  ? 'Changing Name'
-                  : 'Changing Password'}
+                {clickedButtonName === 'name' ? '이름 변경' : '패스워드 변경'}
               </h4>
               <div className="text-red-600 text-sm mb-4">{error}</div>
               <label className="mb-4 w-full">
-                {clickedButtonName === 'name' ? 'New Name' : 'New Password'}
+                {clickedButtonName === 'name' ? '이름' : '패스워드'}
                 {clickedButtonName === 'name' ? (
                   <input
                     type="text"
                     value={name}
                     placeholder="Six characters or less"
                     onChange={(e) => setName(e.target.value)}
-                    className="mt-2 px-4 text-sm h-14 bg-gray-50 border-gray-200 border outline-none w-full"
+                    className="mt-2 px-4 dark:text-black  text-sm h-14 bg-gray-50 border-gray-200 border outline-none w-full"
                   />
                 ) : (
                   <input
@@ -186,7 +185,7 @@ export default function MyPage() {
                     value={password}
                     placeholder="Six characters or more"
                     onChange={(e) => setPassword(e.target.value)}
-                    className="mt-2 px-4 text-sm h-14 bg-gray-50 border-gray-200 border outline-none w-full"
+                    className="mt-2 px-4 dark:text-black text-sm h-14 bg-gray-50 border-gray-200 border outline-none w-full"
                   />
                 )}
               </label>
@@ -197,10 +196,10 @@ export default function MyPage() {
                 disabled={isUpdating}
               >
                 {isUpdating
-                  ? 'Updating...'
+                  ? '변경 중...'
                   : clickedButtonName === 'name'
-                  ? 'Change Name'
-                  : 'Change Password'}
+                  ? '이름 변경하기'
+                  : '패스워드 변경하기'}
               </button>
             </div>
           </div>

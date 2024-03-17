@@ -58,10 +58,10 @@ function Search() {
         </button>
 
         <div
-          className="bg-black bg-opacity-30 w-full h-full fixed top-0 left-0 hidden "
+          className="bg-black bg-opacity-30 w-full h-full fixed top-0 left-0 hidden dark:bg-white dark:bg-opacity-30"
           ref={modalBackground}
         >
-          <div className="absolute top-10 search-modal-center bg-white text-sm w-11/12 sm:w-8/12 xl:w-1/2 h-80svh overflow-y-auto ">
+          <div className="absolute top-10 search-modal-center  bg-white text-sm w-11/12 sm:w-8/12 xl:w-1/2 h-80svh overflow-y-auto dark:bg-zinc-900 ">
             <button
               name="downModal"
               className="absolute right-4 top-4 text-xl"
@@ -74,17 +74,19 @@ function Search() {
               value={searchText}
               onChange={handleChange}
               placeholder="Typing Somthing..."
-              className="border-b border-solid border-black focus:outline-none dark:border-white w-full pb-2"
+              className="px-2 border-b border-solid border-black focus:outline-none dark:border-white w-full pb-2 dark:bg-white dark:text-black mt-4 pt-2"
               ref={input}
             />
-            <ul className="mt-4 bg-white dark:bg-black dark:bg-opacity-60 dark:text-white">
+            <ul className="mt-4 bg-white dark:bg-zinc-900 dark:text-white ">
               {searchedDatas.map((item) => (
                 <li key={item.id} className="truncate px-4 py-2 ">
                   <Link
                     href={`/product/detail/${item.id}`}
-                    onClick={() =>
-                      modalBackground.current?.classList.add('hidden')
-                    }
+                    onClick={() => {
+                      modalBackground.current?.classList.add('hidden');
+                      setSearchText('');
+                      setSearchedData([]);
+                    }}
                   >
                     {item.title}
                   </Link>

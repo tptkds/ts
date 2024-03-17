@@ -77,7 +77,7 @@ function Form() {
             placeholder="Email"
             autoComplete="username"
             onChange={(e) => setEmail(e.target.value)}
-            className="px-4  text-sm h-14 bg-gray-50 border-gray-200 border mb-6 outline-none w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3 "
+            className="px-4  text-sm h-14 bg-gray-50  dark:text-black border-gray-200 border mb-6 outline-none w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3 "
           />
           <input
             name="password"
@@ -86,14 +86,14 @@ function Form() {
             placeholder="Password"
             autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
-            className="px-4 text-sm h-14 bg-gray-50 border-gray-200 border outline-none w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3 "
+            className="px-4 text-sm h-14 bg-gray-50  dark:text-black border-gray-200 border outline-none w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3 "
           />
         </div>
         <div className="flex flex-col items-center w-full my-8">
           <button
             type="submit"
             disabled={isSignIng}
-            className="h-12 text-sm bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out  w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3"
+            className="h-12 text-sm bg-zinc-900 dark:bg-zinc-400 dark:hover:bg-neutral-300  hover:bg-zinc-700 text-white dark:text-zinc-900 transition duration-200 ease-in-out  w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3"
           >
             Sign In
           </button>

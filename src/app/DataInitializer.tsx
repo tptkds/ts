@@ -21,7 +21,7 @@ export default function DataInitializer({
     const fetchData = async () => {
       const productList: Product[] = await getProductList();
       dispatch(setProductList(productList));
-      console.log(currentUser);
+
       if (!currentUser) {
         const cartItems: CartItems = getCartItemsLocalStorage();
         dispatch(setCartItems(cartItems));
