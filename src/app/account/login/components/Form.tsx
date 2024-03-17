@@ -67,35 +67,35 @@ function Form() {
 
   return (
     <>
-      <div className="text-red-600 text-sm mb-4">{error}</div>
+      <div className="text-red-600  mb-4">{error}</div>
       <form onSubmit={singIn} className="flex flex-col items-center w-full">
         <div className="flex flex-col items-center w-full">
           <input
             name="email"
             type="email"
             value={email}
-            placeholder="Email"
+            placeholder="이메일"
             autoComplete="username"
             onChange={(e) => setEmail(e.target.value)}
-            className="px-4  text-sm h-14 bg-gray-50  dark:text-black border-gray-200 border mb-6 outline-none w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3 "
+            className="px-4   h-14 bg-gray-50  dark:text-black border-gray-200 border mb-6 outline-none w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3 "
           />
           <input
             name="password"
             type="password"
             value={password}
-            placeholder="Password"
+            placeholder="패스워드"
             autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
-            className="px-4 text-sm h-14 bg-gray-50  dark:text-black border-gray-200 border outline-none w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3 "
+            className="px-4  h-14 bg-gray-50  dark:text-black border-gray-200 border outline-none w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3 "
           />
         </div>
         <div className="flex flex-col items-center w-full my-8">
           <button
             type="submit"
             disabled={isSignIng}
-            className="h-12 text-sm bg-zinc-900 dark:bg-zinc-400 dark:hover:bg-neutral-300  hover:bg-zinc-700 text-white dark:text-zinc-900 transition duration-200 ease-in-out  w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3"
+            className="h-12  bg-zinc-900 dark:bg-zinc-400 dark:hover:bg-neutral-300  hover:bg-zinc-700 text-white dark:text-zinc-900 transition duration-200 ease-in-out  w-11/12 sm:w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3"
           >
-            Sign In
+            로그인하기
           </button>
         </div>
       </form>

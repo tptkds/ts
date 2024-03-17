@@ -53,7 +53,7 @@ export default function WishlistComponent() {
     </ul>
   ) : (
     <div className="flex justify-center items-center w-full">
-      <p className="text-center text-xs p-14 ">There are no favorite items</p>
+      <p className="text-center  p-14 ">There are no favorite items</p>
     </div>
   );
 }

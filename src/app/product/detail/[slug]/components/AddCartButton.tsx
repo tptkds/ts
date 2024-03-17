@@ -35,7 +35,7 @@ export default function AddCartButton({ item }: { item: Product }) {
     <>
       <button onClick={handleClick}>ADD CART</button>
       <div
-        className="absolute flex flex-col modal-center shadow-md items-center pt-8 text-sm z-20 rounded-box hidden "
+        className="absolute flex flex-col modal-center shadow-md items-center pt-8 z-20 rounded-box hidden "
         ref={modal}
       >
         <p className=" mb-4">상품이 장바구니에 담겼어요.</p>

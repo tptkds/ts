@@ -3,20 +3,17 @@ import StoreProvider from './StoreProvider';
 import ThemeProvider from './ThemeProvider';
 import './globals.css';
 import Footer from './components/Footer';
-import { Inter, Josefin_Sans, Noto_Sans } from 'next/font/google';
+import { Noto_Sans } from 'next/font/google';
 import DataInitializer from './DataInitializer';
 import Header from './components/Header';
 import { AuthProvider } from './AuthProvider';
 import Search from './components/Search';
 
-const josefinSans = Josefin_Sans({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700'],
-});
 const notoSans = Noto_Sans({
   subsets: ['latin'],
   weight: ['100', '200', '300', '400', '500', '600', '700'],
 });
+
 export const metadata: Metadata = {
   title: 'showfinnmore',
   description: '여자 옷, 남자 옷, 악세사리, 전자제품 판매 쇼핑몰',
@@ -29,11 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body
-        className={
-          notoSans.className + ' overflow-x-hidden select-none h-dvh relative '
-        }
-      >
+      <body className="overflow-x-hidden select-none h-dvh relative ">
         <StoreProvider>
           <ThemeProvider attribute="class">
             <AuthProvider>

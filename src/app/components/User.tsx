@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { RiLoginBoxFill, RiLogoutBoxFill } from 'react-icons/ri';
 import { getCartItemsLocalStorage } from '@/utilities/localstorage';
 import { CartItems } from '@/types/globalTypes';
-import { setCartItems } from '@/slices/productSlict';
+import { setCartItems, setWishlist } from '@/slices/productSlict';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 
 export default function User() {
@@ -21,7 +21,7 @@ export default function User() {
 
     const cartItems: CartItems = getCartItemsLocalStorage();
     dispatch(setCartItems(cartItems));
-
+    dispatch(setWishlist({}));
     modal.current?.classList.remove('hidden');
     setTimeout(() => {
       modal.current?.classList.add('hidden');

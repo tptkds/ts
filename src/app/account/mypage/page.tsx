@@ -118,7 +118,7 @@ export default function MyPage() {
 
   return (
     <div className="mt-14 flex flex-col justify-center w-full items-center">
-      <h2>My Page</h2>
+      <h2>마이페이지</h2>
       <div className="my-14 flex flex-col items-center min-w-64">
         <h3 className=" text-xl">Account Info</h3>
 
@@ -136,7 +136,7 @@ export default function MyPage() {
           <button
             name="nameButton"
             type="button"
-            className="h-12 text-sm dark:bg-zinc-700 dark:hover:bg-zinc-500 bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
+            className="h-12  dark:bg-zinc-700 dark:hover:bg-zinc-500 bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
             onClick={toggleModal}
           >
             이름 변경
@@ -144,7 +144,7 @@ export default function MyPage() {
           <button
             name="passwordButton"
             type="button"
-            className="h-12 mt-4 text-sm bg-zinc-900 dark:bg-zinc-700 dark:hover:bg-zinc-500 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
+            className="h-12 mt-4  bg-zinc-900 dark:bg-zinc-700 dark:hover:bg-zinc-500 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
             onClick={toggleModal}
           >
             패스워드 변경
@@ -168,30 +168,30 @@ export default function MyPage() {
               <h4 className="mb-8">
                 {clickedButtonName === 'name' ? '이름 변경' : '패스워드 변경'}
               </h4>
-              <div className="text-red-600 text-sm mb-4">{error}</div>
+              <div className="text-red-600  mb-4">{error}</div>
               <label className="mb-4 w-full">
                 {clickedButtonName === 'name' ? '이름' : '패스워드'}
                 {clickedButtonName === 'name' ? (
                   <input
                     type="text"
                     value={name}
-                    placeholder="Six characters or less"
+                    placeholder="여섯 글자 이하"
                     onChange={(e) => setName(e.target.value)}
-                    className="mt-2 px-4 dark:text-black  text-sm h-14 bg-gray-50 border-gray-200 border outline-none w-full"
+                    className="mt-2 px-4 dark:text-black   h-14 bg-gray-50 border-gray-200 border outline-none w-full"
                   />
                 ) : (
                   <input
                     type="password"
                     value={password}
-                    placeholder="Six characters or more"
+                    placeholder="여섯 글자 이상"
                     onChange={(e) => setPassword(e.target.value)}
-                    className="mt-2 px-4 dark:text-black text-sm h-14 bg-gray-50 border-gray-200 border outline-none w-full"
+                    className="mt-2 px-4 dark:text-black  h-14 bg-gray-50 border-gray-200 border outline-none w-full"
                   />
                 )}
               </label>
               <button
                 type="button"
-                className="h-12 mt-4 text-sm bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
+                className="h-12 mt-4  bg-zinc-900 hover:bg-zinc-700 text-white transition duration-200 ease-in-out w-full"
                 onClick={changeSomething}
                 disabled={isUpdating}
               >

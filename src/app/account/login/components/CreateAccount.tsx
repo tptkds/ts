@@ -5,9 +5,9 @@ export default function CreateAccount() {
   return (
     <Link
       href="/account/register"
-      className="underline underline-offset-4 text-xs mb-4"
+      className="underline underline-offset-4  mb-4"
     >
-      Create account
+      회원가입하기
     </Link>
   );
 }

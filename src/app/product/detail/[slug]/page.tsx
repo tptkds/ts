@@ -22,7 +22,7 @@ export default function Detail({ params }: { params: { slug: number } }) {
 
   return (
     <div
-      className="h-full flex p-20 justify-center w800-max-padding text-sm sm-max-textsize-12"
+      className="h-full flex p-20 justify-center w800-max-padding  sm-max-textsize-12"
       onLoad={() => scrollToTop()}
     >
       <div className="  w-3/6 flex justify-center items-start h-80svh">
@@ -41,7 +41,7 @@ export default function Detail({ params }: { params: { slug: number } }) {
           )}
         </div>
       </div>
-      <div className="w-3/6 h-full text-sm sm-max-textsize-12">
+      <div className="w-3/6 h-full  sm-max-textsize-12">
         <p>{curItem?.title}</p>
         <p className="py-2.5">{curItem?.description}</p>
         <p>${curItem?.price}</p>

@@ -61,7 +61,7 @@ function Search() {
           className="bg-black bg-opacity-30 w-full h-full fixed top-0 left-0 hidden dark:bg-white dark:bg-opacity-30"
           ref={modalBackground}
         >
-          <div className="absolute top-10 search-modal-center  bg-white text-sm w-11/12 sm:w-8/12 xl:w-1/2 h-80svh overflow-y-auto dark:bg-zinc-900 ">
+          <div className="absolute top-10 search-modal-center  bg-white w-11/12 sm:w-8/12 xl:w-1/2 h-80svh overflow-y-auto dark:bg-zinc-900 ">
             <button
               name="downModal"
               className="absolute right-4 top-4 text-xl"
@@ -73,7 +73,7 @@ function Search() {
               type="text"
               value={searchText}
               onChange={handleChange}
-              placeholder="Typing Somthing..."
+              placeholder="Search..."
               className="px-2 border-b border-solid border-black focus:outline-none dark:border-white w-full pb-2 dark:bg-white dark:text-black mt-4 pt-2"
               ref={input}
             />

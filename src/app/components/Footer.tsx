@@ -29,7 +29,7 @@ export default function Footer() {
           </Link>
         </li>
       </ul>
-      <ul className="text-xs">
+      <ul className="">
         <li>
           <p>@2024 kimyougyoung</p>
         </li>

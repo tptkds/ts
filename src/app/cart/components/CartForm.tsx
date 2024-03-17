@@ -151,12 +151,12 @@ function CartForm() {
   return (
     <>
       <div className="mt-14 flex flex-col justify-center w-full items-center">
-        <h2>Cart</h2>
+        <h2>장바구니</h2>
       </div>
       <div>
         <form action="">
           <ul>
-            <li className="my-4 flex text-sm sm-max-textsize-12">
+            <li className="my-4 flex  sm-max-textsize-12">
               <input
                 type="checkbox"
                 className="mr-4"
@@ -205,7 +205,7 @@ function CartForm() {
                         />
                       </Link>
                     </div>
-                    <div className="w-full flex text-sm sm-max-textsize-12">
+                    <div className="w-full flex  sm-max-textsize-12">
                       <div className="w-1/5 whitespace-pre-line=true flex items-center md:w-1/4">
                         <Link
                           href={`/product/detail/${cartItems[v].product.id}`}
@@ -258,9 +258,7 @@ function CartForm() {
                 );
               })
             ) : (
-              <p className="text-center text-xs p-14 ">
-                장바구니가 비어 있습니다.
-              </p>
+              <p className="text-center p-14 ">장바구니가 비어 있습니다.</p>
             )}
             <li>
               <button name="deleteMany" onClick={handleClick}>

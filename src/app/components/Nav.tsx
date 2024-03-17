@@ -11,7 +11,7 @@ export default function Nav() {
   return (
     <nav className="flex relative min-width-313 items-center m-4 header-bottom sticky h-16 shadow-lg rounded-xl bg-zinc-100	 bg-opacity-80 dark:bg-black dark:bg-opacity-60 dark:text-white">
       <div className="flex basis-1/3 order-1 justify-center  lg:justify-normal lg:order-0 lg:ml-8 lg:order-0">
-        <h1 className="lg:mr-2 text-xs font-normal flex items-center ">
+        <h1 className="lg:mr-2 font-normal flex items-center ">
           <LogoLink />
         </h1>
       </div>
@@ -20,7 +20,7 @@ export default function Nav() {
         <Menu />
       </div>
 
-      <div className="flex basis-1/3 justify-end text-xs items-center order-2">
+      <div className="flex basis-1/3 justify-end items-center order-2">
         <div className="mr-2 sm:mr-4">
           <MyPage />
         </div>

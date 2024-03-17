@@ -3,8 +3,8 @@ import React from 'react';
 
 export default function ReturnToStore() {
   return (
-    <Link href="/" className="underline underline-offset-4 text-xs mb-4">
-      Return to store
+    <Link href="/" className="underline underline-offset-4  mb-4">
+      메인화면
     </Link>
   );
 }

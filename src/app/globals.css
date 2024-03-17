@@ -10,7 +10,77 @@
   box-sizing: border-box;
 }
 
-.header-bottom {
+body {
+  font-family: AppleSDGothicNeo, sans-serif;
+}
+h1 {
+  font-weight: 500;
+  font-style: oblique;
+  font-size: 14px;
+  letter-spacing: 5px;
+
+  @media (max-width: 500px) {
+    letter-spacing: 1px;
+  }
+}
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: AppleSDGothicNeo;
+  font-weight: 100;
+  src: url('/fonts/AppleSDGothicNeoT.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: AppleSDGothicNeo;
+  font-weight: 200;
+  src: url('/fonts/AppleSDGothicNeoUL.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: AppleSDGothicNeo;
+  font-weight: 300;
+  src: url('/fonts/AppleSDGothicNeoL.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: AppleSDGothicNeo;
+  font-weight: 400;
+  src: url('/fonts/AppleSDGothicNeoR.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: AppleSDGothicNeo;
+  font-weight: 500;
+  src: url('/fonts/AppleSDGothicNeoM.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: AppleSDGothicNeo;
+  font-weight: 600;
+  src: url('/fonts/AppleSDGothicNeoSB.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: AppleSDGothicNeo;
+  font-weight: 700;
+  src: url('/fonts/AppleSDGothicNeoB.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: AppleSDGothicNeo;
+  font-weight: 800;
+  src: url('/fonts/AppleSDGothicNeoEB.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: AppleSDGothicNeo;
+  font-weight: 900;
+  src: url('/fonts/AppleSDGothicNeoH.ttf') format('truetype');
+
   width: calc(100% - var(--layout-row-gap));
   left: calc(var(--layout-row-gap) / 2);
 }
@@ -28,10 +98,6 @@
     transform: translateX(-100%);
   }
 }
-
-/* .h-1\\/12 {
-  height: 8.333333%;
-} */
 
 .h-80svh {
   height: 80svh;
