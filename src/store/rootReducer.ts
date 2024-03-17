@@ -1,4 +1,4 @@
-import { darkModeReducer } from '@/slices/darkModeSlice';
+import { darkModeReducer } from '@/slices/DarkModeSlice';
 import { productReducer } from '@/slices/productSlict';
 import { userReducer } from '@/slices/userSlice';
 import { combineReducers } from '@reduxjs/toolkit';
