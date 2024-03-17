@@ -14,7 +14,7 @@ export default function AddCartButton({ item }: { item: Product }) {
   const modal = useRef<HTMLDivElement | null>(null);
   const modalBackground = useRef<HTMLDivElement | null>(null);
 
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
     e.preventDefault();
     if (e.target.name === 'goCart') {
       router.push('/cart');

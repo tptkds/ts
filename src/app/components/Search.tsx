@@ -20,7 +20,7 @@ function Search() {
     setSearchedData(datas ? datas : []);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     e.preventDefault();
     setSearchText(e.target.value);
     if (e.target.value !== '') searchData(e.target.value);
@@ -29,7 +29,7 @@ function Search() {
     }
   };
 
-  const toggleModal = (e) => {
+  const toggleModal = (e: any) => {
     e.preventDefault();
     if (e.target.name === 'searching') {
       modalBackground.current?.classList.remove('hidden');
