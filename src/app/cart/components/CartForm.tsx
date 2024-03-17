@@ -13,6 +13,7 @@ import { doc, updateDoc } from 'firebase/firestore';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useContext, useEffect, useState } from 'react';
+import { MdDelete } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 interface CheckBoxes {
   [key: string]: boolean;
@@ -163,20 +164,21 @@ function CartForm() {
                 onChange={handleChange}
                 name="all"
                 checked={checkAllBox}
+                disabled={cartItemKeys.length === 0}
               />
               <div className="w-2/12 py-8 mx-4 flex items-center">
-                <p className="whitespace-pre-line=true">Product</p>
+                <p className="whitespace-pre-line=true">제품</p>
               </div>
               <div className="w-full flex items-center">
                 <p className="w-1/5 whitespace-pre-line=true flex items-center md:w-1/4"></p>
                 <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                  Price
+                  가격
                 </p>
                 <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                  Amount
+                  수량
                 </p>
                 <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
-                  Total
+                  합계
                 </p>
                 <p className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4"></p>
               </div>
@@ -250,7 +252,7 @@ function CartForm() {
                       </div>
                       <div className=" w-1/5 whitespace-pre-line=true  flex justify-end  items-center md:w-1/4">
                         <button id={v} name="deleteOne" onClick={handleClick}>
-                          delete
+                          <MdDelete style={{ fontSize: '20px' }} />
                         </button>
                       </div>
                     </div>
@@ -261,8 +263,13 @@ function CartForm() {
               <p className="text-center p-14 ">장바구니가 비어 있습니다.</p>
             )}
             <li>
-              <button name="deleteMany" onClick={handleClick}>
-                delete
+              <button
+                name="deleteMany"
+                onClick={handleClick}
+                className="mt-4 bg-zinc-900 dark:hover:bg-zinc-200 dark:bg-white dark:disabled:bg-zinc-400 py-2 px-4 text-white dark:text-black text-xs rounded hover:bg-zinc-700 transition disabled:bg-zinc-400"
+                disabled={cartItemKeys.length === 0}
+              >
+                선택 삭제
               </button>
             </li>
           </ul>

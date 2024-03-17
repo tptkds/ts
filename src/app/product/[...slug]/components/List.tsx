@@ -47,44 +47,61 @@ export default function List() {
   return (
     <>
       <ul className="grid grid-cols-1 gap-8 h-full sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {curProducts.map((product) => {
-          return (
-            <li key={product.id} className="h-full">
-              <div className="h-4/5">
-                <Link
-                  href={`/product/detail/${product.id}`}
-                  className="flex items-center w-full h-full relative"
-                >
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: '100%', height: 'auto', padding: '20%' }}
-                    priority
-                  />
-                </Link>
-              </div>
-
-              <div>
-                <Link href={`/product/detail/${product.id}`}>
-                  {product.title}
-                </Link>
-                <p className="my-2">${product.price}</p>
-              </div>
-
-              <div className="flex">
-                <div className="mr-2">
-                  <WishlistButton product={product} wishlist={wishlist} />
+        {curProducts.length !== 0 ? (
+          curProducts.map((product) => {
+            return (
+              <li key={product.id} className="h-full">
+                <div className="h-4/5">
+                  <Link
+                    href={`/product/detail/${product.id}`}
+                    className="flex items-center w-full h-full relative"
+                  >
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: '100%', height: 'auto', padding: '20%' }}
+                      priority
+                    />
+                  </Link>
                 </div>
+
                 <div>
-                  <CartButton product={product} cartItems={cartItems} />
+                  <Link href={`/product/detail/${product.id}`}>
+                    {product.title}
+                  </Link>
+                  <p className="my-2">${product.price}</p>
                 </div>
-              </div>
-            </li>
-          );
-        })}
+
+                <div className="flex">
+                  <div className="mr-2">
+                    <WishlistButton product={product} wishlist={wishlist} />
+                  </div>
+                  <div>
+                    <CartButton product={product} cartItems={cartItems} />
+                  </div>
+                </div>
+              </li>
+            );
+          })
+        ) : (
+          <ul className="grid grid-cols-1 gap-8 h-full sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {new Array(9).fill(null).map((_, i) => {
+              return (
+                <li className="h-full" key={i}>
+                  <div className="flex flex-col gap-4 w-full">
+                    <div className="skeleton h-4/5 w-full"></div>
+                    <div className="skeleton h-4 w-28"></div>
+                    <div className="skeleton h-4 w-full"></div>
+                    <div className="skeleton h-4 w-full"></div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </ul>
     </>
   );
