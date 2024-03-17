@@ -93,9 +93,25 @@ function CartForm() {
           updateDoc(userRef, {
             cartItems: newCartItems,
           });
+        let checkBoxesData: { [key: string]: boolean } = {};
+        Object.keys(newCartItems).forEach((key) => {
+          checkBoxesData[key] = true;
+        });
+        setCheckBoxes(checkBoxesData);
+        setCheckAllBox(true);
+
+        dispatch(setCartItems(newItems));
+        console.log(checkBoxes);
       } else {
         deleteCartItemsLocalStorage(keys);
         newItems = getCartItemsLocalStorage();
+        dispatch(setCartItems(newItems));
+        let checkBoxesData: { [key: string]: boolean } = {};
+        Object.keys(newItems).forEach((key) => {
+          checkBoxesData[key] = true;
+        });
+        setCheckBoxes(checkBoxesData);
+        setCheckAllBox(true);
       }
     } else if (target?.name === 'deleteOne') {
       if (currentUser) {
@@ -110,21 +126,28 @@ function CartForm() {
           updateDoc(userRef, {
             cartItems: newCartItems,
           });
+        let checkBoxesData: { [key: string]: boolean } = {};
+        Object.keys(newCartItems).forEach((key) => {
+          checkBoxesData[key] = true;
+        });
+        setCheckBoxes(checkBoxesData);
+        setCheckAllBox(true);
+
+        dispatch(setCartItems(newItems));
       } else {
         deleteCartItemsLocalStorage([target.id]);
         newItems = getCartItemsLocalStorage();
+        dispatch(setCartItems(newItems));
+        let checkBoxesData: { [key: string]: boolean } = {};
+        Object.keys(newItems).forEach((key) => {
+          checkBoxesData[key] = true;
+        });
+        setCheckBoxes(checkBoxesData);
+        setCheckAllBox(true);
       }
     } else {
       return;
     }
-    let checkBoxesData: { [key: string]: boolean } = {};
-    Object.keys(cartItems).forEach((key) => {
-      checkBoxesData[key] = true;
-    });
-    setCheckBoxes(checkBoxesData);
-    setCheckAllBox(true);
-
-    dispatch(setCartItems(newItems));
   };
 
   const decrement = (e: any, key: string) => {
