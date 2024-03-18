@@ -9,16 +9,15 @@ import { scrollToTop } from '@/utilities/app';
 import { AuthContext } from '@/app/AuthProvider';
 
 export default function Detail({ params }: { params: { slug: number } }) {
-  const [curItem, setCurItem] = useState<Product>();
+  const [curItem, setCurItem] = useState<Product | undefined>();
   const { currentUser } = useContext(AuthContext);
   const productList: Product[] = useAppSelector(
     (state) => state.product.productList
   );
 
   useEffect(() => {
-    const item: Product | undefined = productList.find(
-      (item) => item.id == params.slug
-    );
+    const slugAsNumber = Number(params.slug);
+    const item = productList.find((product) => product.id === slugAsNumber);
     setCurItem(item);
   }, [productList, params.slug]);
 
@@ -28,7 +27,6 @@ export default function Detail({ params }: { params: { slug: number } }) {
       return;
     }
     alert('구매가 완료되었습니다.');
-    return;
   };
 
   return (

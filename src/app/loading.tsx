@@ -22,6 +22,27 @@ export default function Loading() {
       ))}
     </ul>
   );
+
+  const detailPageSkeleton = (
+    <div className="mt-28 min-h-screen flex flex-col items-center justify-center">
+      <div className="w-full max-w-4xl p-5">
+        {/* 제품 이미지 */}
+        <Skeleton height={400} />
+        {/* 제품 제목 */}
+        <Skeleton height={30} width={`60%`} className="mt-5" />
+        {/* 제품 설명 */}
+        <Skeleton count={3} className="mt-5" />
+        {/* 가격 */}
+        <Skeleton width={`20%`} className="mt-5" />
+        {/* 구매 및 장바구니 버튼 */}
+        <div className="flex mt-5">
+          <Skeleton height={50} width={`30%`} className="mr-2" />
+          <Skeleton height={50} width={`30%`} />
+        </div>
+      </div>
+    </div>
+  );
+
   const pathname = usePathname();
 
   return (
