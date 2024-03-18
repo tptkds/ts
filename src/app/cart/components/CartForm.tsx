@@ -1,6 +1,6 @@
 'use client';
 import { AuthContext } from '@/app/AuthProvider';
-import { db } from '@/app/firebaseConfigure';
+import { db } from '@/app/firebaseConfig';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { setCartItems } from '@/slices/productSlict';
 import { CartItems } from '@/types/globalTypes';

@@ -4,7 +4,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { auth } from '../firebaseConfigure';
+import { auth } from '../firebaseConfig';
 
 export const createUserOnFireBase = async (
   email: FormDataEntryValue,

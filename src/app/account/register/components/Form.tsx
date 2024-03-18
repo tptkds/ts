@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { auth, db } from '@/app/firebaseConfigure';
+import { auth, db } from '@/app/firebaseConfig';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { AppDispatch } from '@/types/reduxTypes';

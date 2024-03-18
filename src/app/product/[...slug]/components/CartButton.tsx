@@ -11,7 +11,7 @@ import {
 import { PiHeart, PiShoppingBagFill, PiShoppingBagLight } from 'react-icons/pi';
 import { AuthContext } from '@/app/AuthProvider';
 import { userInfo } from 'os';
-import { db } from '@/app/firebaseConfigure';
+import { db } from '@/app/firebaseConfig';
 import { doc, updateDoc } from 'firebase/firestore';
 
 function CartButton({

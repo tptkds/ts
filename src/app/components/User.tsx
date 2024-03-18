@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import React, { useContext, useRef } from 'react';
-import { auth } from '../firebaseConfigure';
+import { auth } from '../firebaseConfig';
 import { AuthContext } from '../AuthProvider';
 import { useRouter } from 'next/navigation';
 import { RiLoginBoxFill, RiLogoutBoxFill } from 'react-icons/ri';

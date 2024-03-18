@@ -1,6 +1,6 @@
 'use client';
 import { AuthContext } from '@/app/AuthProvider';
-import { auth } from '@/app/firebaseConfigure';
+import { auth } from '@/app/firebaseConfig';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { setUserInfo } from '@/slices/userSlice';
 import { updatePassword, updateProfile } from 'firebase/auth';

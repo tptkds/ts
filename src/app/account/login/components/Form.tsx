@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { auth } from '@/app/firebaseConfigure';
+import { auth } from '@/app/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { AppDispatch } from '@/types/reduxTypes';

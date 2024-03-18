@@ -5,7 +5,7 @@ import { Product, Wishlist } from '@/types/globalTypes';
 import { PiHeartFill, PiHeartLight } from 'react-icons/pi';
 import { setWishlist } from '@/slices/productSlict';
 import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '@/app/firebaseConfigure';
+import { db } from '@/app/firebaseConfig';
 import { AuthContext } from '@/app/AuthProvider';
 
 export default function WishlistButton({

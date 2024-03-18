@@ -1,3 +1,8 @@
+export interface Metadata {
+  title: string;
+  description: string;
+}
+
 export interface Product {
   id: number;
   title: string;
