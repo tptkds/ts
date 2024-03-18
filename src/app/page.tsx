@@ -7,11 +7,11 @@ export default function Home() {
         src="/backgrounds/home-bg.jpg"
         alt="garage"
         fill
-        sizes="100vw"
+        sizes="(min-width: 640px) 640px, 100vw"
         style={{
           objectFit: 'cover',
         }}
-        priority={true}
+        priority
       />
     </div>
   );
